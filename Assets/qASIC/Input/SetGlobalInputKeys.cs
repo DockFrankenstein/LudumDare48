@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace qASIC.InputManagment
+namespace qASIC.InputManagement
 {
     public class SetGlobalInputKeys : MonoBehaviour
     {

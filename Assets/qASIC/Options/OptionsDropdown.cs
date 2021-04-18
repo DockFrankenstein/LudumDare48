@@ -1,57 +1,25 @@
-﻿using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 
 namespace qASIC.Options.Menu
 {
-    public abstract class OptionsDropdown : MenuOption
+    public class OptionsDropdown : MenuOption
     {
-        [UnityEngine.HideInInspector] public TMP_Dropdown dropDown;
-        public List<object> properties = new List<object>();
+        private TMP_Dropdown _dropdown;
 
-        public override void Start()
+        public override string GetLabel()
         {
-            isActive = false;
-            dropDown = GetComponent<TMP_Dropdown>();
-            if (dropDown == null) return;
-            Assign();
-            Initialize();
-            SetIndexCurrent();
-            base.Start();
-            isActive = true;
+            if (_dropdown == null || _dropdown.value >= _dropdown.options.Count) return string.Empty;
+            return $"{NameText}{_dropdown.options[_dropdown.value].text}";
         }
-
-        private void Update()
-        {
-            if (NameText != null && dropDown != null) NameText.text = GetPropertyName(properties[dropDown.value]);
-        }
-
-        public abstract void Assign();
-
-        public void SetValue(int value) => SetValue(properties[value]);
-
-        public virtual void SetValue(object propertie)
-        {
-            SetValue(propertie, true);
-        }
-
-        public virtual void Initialize()
-        {
-            List<TMP_Dropdown.OptionData> dropDownData = new List<TMP_Dropdown.OptionData>();
-            dropDown.ClearOptions();
-            for (int i = 0; i < properties.Count; i++)
-                dropDownData.Add(new TMP_Dropdown.OptionData() { text = GetDropdownValueName(properties[i]) });
-            dropDown.AddOptions(dropDownData);
-        }
-
-        public abstract void SetIndexCurrent();
-        public virtual string GetDropdownValueName(object property) => property.ToString();
-        public override string GetPropertyName(object property) => $"{OptionLabelName}{GetDropdownValueName(property)}";
 
         public override void LoadOption()
         {
+            if (_dropdown == null) return;
             if (!OptionsController.TryGetUserSetting(OptionName, out string optionValue) ||
-                !int.TryParse(optionValue, out int value) || dropDown == null) return;
-            dropDown.value = value;
+                !int.TryParse(optionValue, out int result)) return;
+
+            if (result >= _dropdown.options.Count) return;
+            _dropdown.SetValueWithoutNotify(result);
         }
     }
 }

@@ -6,26 +6,30 @@ using UnityEngine.Events;
 
 namespace qASIC.Console
 {
+    [RequireComponent(typeof(Toggler))]
     public class GameConsoleInterface : MonoBehaviour
     {
         [Header("Settings")]
+        [Tooltip("Limit of logs that will be displayed. By default it is set to 64, for professional use 512 or 1024 is recomended")]
         public int LogLimit = 64;
+        [Tooltip("Console configuration asset that will be sent to the controller on awake")]
         public GameConsoleConfig ConsoleConfig;
-        public bool SelectOnOpen = true;
-        public bool ReselectOnSubmit = true;
-        public bool ResetScrollOnRun = true;
 
         [Header("Objects")]
-        public GameObject CanvasObject;
+        [Tooltip("TextMesh Pro text that will display logs")]
         public TextMeshProUGUI Logs;
+        [Tooltip("The input field that will enter commands")]
         public TMP_InputField Input;
+        [Tooltip("The scrollRect that contains Logs")]
         public UnityEngine.UI.ScrollRect Scroll;
-
-        [Header("Events")]
-        public UnityEventBool OnConsoleChangeState;
 
         private int _commandIndex = -1;
 
+        public bool isScrollSnapped { get; private set; } = true;
+
+        Toggler toggler;
+
+        [Tooltip("Platforms on which the input field won't be reselected after running a command or enabling the console")]
         public RuntimePlatform[] IgnoreReselectPlatforms = new RuntimePlatform[]
             {
                 RuntimePlatform.IPhonePlayer,
@@ -35,10 +39,55 @@ namespace qASIC.Console
         private void Awake()
         {
             AssignConfig();
-            ReloadInterface();
-            if (GameConsoleController.TryGettingConfig(out GameConsoleConfig config) && config.LogScene)
-                UnityEngine.SceneManagement.SceneManager.sceneLoaded += LogLoadedScene;
+            SetupConfig();
             AddLogEvent();
+            RefreshLogs();
+
+            toggler = GetComponent<Toggler>();
+            if (toggler != null) toggler.OnChangeState.AddListener(OnChangeState);
+        }
+
+        public void OnChangeState(bool state)
+        {
+            if (!state) return;
+            ResetScroll();
+            RefreshLogs();
+            DiscardPreviousCommand();
+            Input?.SetTextWithoutNotify(string.Empty);
+            StartCoroutine(Reselect());
+        }
+
+        /// <summary>Enables features like logging messages to console, or logging the scene</summary>
+        private void SetupConfig()
+        {
+            if (ConsoleConfig == null) return;
+            if (ConsoleConfig.LogScene) UnityEngine.SceneManagement.SceneManager.sceneLoaded += LogLoadedScene;
+            Application.logMessageReceived += HandleUnityLog;
+        }
+
+        private void HandleUnityLog(string logText, string trace, LogType type)
+        {
+            string color = "default";
+            switch (type)
+            {
+                case LogType.Exception:
+                case LogType.Error:
+                case LogType.Assert:
+                    if (!ConsoleConfig.LogUnityErrorsToConsole) return;
+                    color = "error";
+                    break;
+                case LogType.Warning:
+                    if (!ConsoleConfig.LogUnityWarningsToConsole) return;
+                    color = "warning";
+                    break;
+                case LogType.Log:
+                    if (!ConsoleConfig.LogUnityMessagesToConsole) return;
+                    color = "default";
+                    break;
+            }
+
+            Logic.GameConsoleLog log = new Logic.GameConsoleLog(logText, System.DateTime.Now, color, Logic.GameConsoleLog.LogType.game, true);
+            GameConsoleController.Log(log);
         }
 
         private void AddLogEvent()
@@ -50,11 +99,13 @@ namespace qASIC.Console
             }
             GameConsoleController.OnLog += (Logic.GameConsoleLog log) => RefreshLogs();
         }
-
-        private void Start() => RefreshLogs();
         public void AssignConfig() => GameConsoleController.AssignConfig(ConsoleConfig);
 
-        private void OnDestroy() => GameConsoleController.OnLog -= (Logic.GameConsoleLog log) => RefreshLogs();
+        private void OnDestroy()
+        {
+            GameConsoleController.OnLog -= (Logic.GameConsoleLog log) => RefreshLogs();
+            Application.logMessageReceived -= (string log, string trace, LogType type) => HandleUnityLog(log, trace, type);
+        }
 
         private void LogLoadedScene(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
         {
@@ -62,20 +113,12 @@ namespace qASIC.Console
             GameConsoleController.Log($"Loaded scene {scene.name}", "scene", Logic.GameConsoleLog.LogType.game);
         }
 
-        private void ReloadInterface()
-        {
-            if (CanvasObject == null) return;
-            CanvasObject.SetActive(true);
-            Canvas.ForceUpdateCanvases();
-            CanvasObject.SetActive(false);
-        }
-
         private void Update()
         {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Return) && CanvasObject != null && CanvasObject.activeSelf) RunCommand();
-            if (UnityEngine.Input.GetKeyDown(KeyCode.BackQuote) && CanvasObject != null) ToggleConsole();
-            if (UnityEngine.Input.GetKeyDown(KeyCode.UpArrow) && CanvasObject.activeSelf) ReInsertCommand(false);
-            if (UnityEngine.Input.GetKeyDown(KeyCode.DownArrow) && CanvasObject.activeSelf) ReInsertCommand(true);
+            if (Scroll != null) isScrollSnapped = Scroll.horizontalNormalizedPosition == 0;
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Return) && toggler.state) RunCommand();
+            if (UnityEngine.Input.GetKeyDown(KeyCode.UpArrow) && toggler.state) ReInsertCommand(false);
+            if (UnityEngine.Input.GetKeyDown(KeyCode.DownArrow) && toggler.state) ReInsertCommand(true);
         }
 
         public void DiscardPreviousCommand() => _commandIndex = -1;
@@ -93,38 +136,25 @@ namespace qASIC.Console
                     break;
             }
             _commandIndex = Mathf.Clamp(_commandIndex, 0, GameConsoleController.InvokedCommands.Count - 1);
-            if (Input != null) 
+            if (Input != null)
                 Input.text = GameConsoleController.InvokedCommands[GameConsoleController.InvokedCommands.Count - _commandIndex - 1];
         }
 
         /// <summary>Updates logs from controller</summary>
         public void RefreshLogs()
         {
-            if (Logs != null) Logs.text = GameConsoleController.LogsToString(LogLimit);
-        }
-
-        public void ToggleConsole()
-        {
-            ToggleConsole(!CanvasObject.activeSelf);
-        }
-
-        public void ToggleConsole(bool state)
-        {
-            if (state && SelectOnOpen) StartCoroutine(Reselect());
-            if (Input != null) Input.text = "";
-            OnConsoleChangeState.Invoke(state);
-            if(CanvasObject != null) CanvasObject.SetActive(state);
-            DiscardPreviousCommand();
-            ResetScroll();
+            if (Logs == null) return;
+            Logs.text = GameConsoleController.LogsToString(LogLimit);
+            if (isScrollSnapped) ResetScroll();
         }
 
         public void RunCommand()
         {
             DiscardPreviousCommand();
+            StartCoroutine(Reselect());
             if (Input == null) return;
-            if (ReselectOnSubmit) StartCoroutine(Reselect());
 
-            if (Input.text == "")
+            if (string.IsNullOrWhiteSpace(Input.text))
             {
                 ResetScroll();
                 return;
@@ -132,13 +162,14 @@ namespace qASIC.Console
 
             GameConsoleController.Log(Input.text, "default", Logic.GameConsoleLog.LogType.user);
             GameConsoleController.RunCommand(Input.text);
-            Input.text = "";
+            Input.text = string.Empty;
             RefreshLogs();
             ResetScroll();
         }
 
         private IEnumerator Reselect()
         {
+            if (Input == null) yield break;
             if (System.Array.IndexOf(IgnoreReselectPlatforms, Application.platform) >= 0) yield break;
             yield return null;
             Input.ActivateInputField();
@@ -146,9 +177,9 @@ namespace qASIC.Console
 
         public void ResetScroll()
         {
-            if (!ResetScrollOnRun || Scroll == null) return;
+            if (Scroll == null) return;
             Canvas.ForceUpdateCanvases();
-            Scroll.verticalNormalizedPosition = 0f;
+            Scroll.normalizedPosition = new Vector2(Scroll.normalizedPosition.x, 0f); ;
         }
     }
 }

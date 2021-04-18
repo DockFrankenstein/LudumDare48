@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace qASIC.InputManagment
+namespace qASIC.InputManagement
 {
     [CreateAssetMenu(fileName = "NewInputPreset", menuName = "qASIC/Input/Input Preset")]
     public class InputPreset : ScriptableObject, ISerializationCallbackReceiver
     {
         public InputManagerKeys Preset = new InputManagerKeys();
 
-        private List<string> _keys = new List<string>();
-        private List<KeyCode> _values = new List<KeyCode>();
+        [SerializeField] List<string> _keys = new List<string>();
+        [SerializeField] List<KeyCode> _values = new List<KeyCode>();
 
         public void OnAfterDeserialize()
         {

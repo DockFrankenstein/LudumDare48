@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using qASIC.FileManaging;
+﻿using UnityEngine;
+using qASIC.FileManagement;
 
 namespace qASIC.Options
 {

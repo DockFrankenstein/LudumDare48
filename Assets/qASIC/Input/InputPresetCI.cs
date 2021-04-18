@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace qASIC.InputManagment.Tools
+namespace qASIC.InputManagement.Tools
 {
     [CustomEditor(typeof(InputPreset))]
     public class InputPresetCI : Editor
@@ -31,7 +31,7 @@ namespace qASIC.InputManagment.Tools
 
         private void DisplayList()
         {
-            GUIStyle textStyle = new GUIStyle()
+            GUIStyle textStyle = new GUIStyle("Label")
             {
                 alignment = TextAnchor.MiddleLeft
             };

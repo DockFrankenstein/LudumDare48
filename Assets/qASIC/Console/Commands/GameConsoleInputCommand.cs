@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using qASIC.Backend;
-using qASIC.InputManagment;
-using UnityEngine;
+using qASIC.InputManagement;
 
 namespace qASIC.Console.Commands
 {
@@ -9,7 +8,7 @@ namespace qASIC.Console.Commands
     {
         public override string CommandName { get; } = "input";
         public override string Description { get; } = "change, print input";
-        public override string Help { get; } = "Use change <input name>; print";
+        public override string Help { get; } = "Use input change <input name>; input print";
         public override string[] Aliases { get; } = new string[] { "keys" };
 
         public override void Run(List<string> args)

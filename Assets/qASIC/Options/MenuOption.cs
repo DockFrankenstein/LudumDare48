@@ -11,20 +11,21 @@ namespace qASIC.Options.Menu
 
         [Header("Options")]
         public string OptionName;
-        public bool save = true;
-
-        public bool isActive { get; set; }
+        public bool Save = true;
 
         public virtual void Start() => LoadOption();
 
         public abstract void LoadOption();
 
-        public void SetValue(object value, bool log)
-        {
-            if (!isActive) return;
-            OptionsController.ChangeOption(OptionName, value, log, save);
-        }
+        public void SetValue(object value, bool log) =>
+            OptionsController.ChangeOption(OptionName, value, log, Save);
 
-        public virtual string GetPropertyName(object property) => $"{OptionLabelName}{property}";
+        public abstract string GetLabel();
+
+        public virtual void Update()
+        {
+            if (NameText != null) 
+                NameText.text = GetLabel();
+        }
     }
 }
