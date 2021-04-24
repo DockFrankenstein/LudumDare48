@@ -1,0 +1,7 @@
+using qASIC;
+using UnityEngine;
+
+public class #SCRIPTNAME# : MonoBehaviour
+{
+	#NOTRIM#
+}
