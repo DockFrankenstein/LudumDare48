@@ -8,22 +8,16 @@ public class PlatformDetection : MonoBehaviour
 
     public bool isPlatform;
 
-    public Transform Player;
+    public Vector3 platformMove;
 
-    Vector3 pos;
-
-    private void Awake()
-    {
-        pos = transform.localPosition;
-        transform.SetParent(null);
-    }
+    Vector3 previous;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag != platformTag) return;
         platformTransform = other.transform;
         isPlatform = true;
-        Player.SetParent(platformTransform);
+        previous = platformTransform.position;
     }
 
     private void OnTriggerExit(Collider other)
@@ -31,12 +25,17 @@ public class PlatformDetection : MonoBehaviour
         if (other.transform.tag != platformTag) return;
         platformTransform = null;
         isPlatform = false;
-        Player.SetParent(null);
+        previous = Vector3.zero;
     }
 
     private void Update()
     {
-        transform.position = Player.position + pos;
-        transform.eulerAngles = Player.eulerAngles;
+        if (!isPlatform)
+        {
+            platformMove = Vector3.zero;
+            return;
+        }
+        platformMove = platformTransform.position - previous;
+        previous = platformTransform.position;
     }
 }

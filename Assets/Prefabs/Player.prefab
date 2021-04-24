@@ -59,7 +59,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformTag: Platform
   isPlatform: 0
-  Player: {fileID: 5580952709643226077}
+  Player: {fileID: 5580952709643226078}
+  platformMove: {x: 0, y: 0, z: 0}
 --- !u!1 &5580952709327977939
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +280,7 @@ MonoBehaviour:
   Gravity: 30
   GroundVelocity: 2
   JumpHeight: 2
+  platformDetection: {fileID: 759114039}
   Speed: 6
   RunSpeed: 12
 --- !u!114 &5580952709643226145

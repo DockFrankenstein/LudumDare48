@@ -17,6 +17,7 @@ public class PlayerMove : MonoBehaviour
     bool isGround;
 
     [Header("Walking")]
+    public PlatformDetection platformDetection;
     public float Speed = 6f;
     public float RunSpeed = 6f;
 
@@ -34,7 +35,9 @@ public class PlayerMove : MonoBehaviour
         CalculateGravity();
         path.y = velocity;
 
-        charControl.Move(path * Time.deltaTime);
+        path *= Time.deltaTime;
+        path += platformDetection.platformMove;
+        charControl.Move(path);
     }
 
     private void CalculateGravity()
