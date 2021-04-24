@@ -47,8 +47,8 @@ MonoBehaviour:
   loop: 0
   MoovingPart: {fileID: 1251786252728649879}
   DeactivatedPosition: {x: 0, y: 0, z: 0}
-  ActivatedPosition: {x: 0, y: 3, z: 0}
-  speed: 1
+  ActivatedPosition: {x: 0, y: 29, z: 0}
+  speed: 3
 --- !u!1 &1251786252728649878
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ec8d0848d8aeedf4c9c3f2c1ebf1a024, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

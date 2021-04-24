@@ -4,6 +4,8 @@ namespace Electricity
 {
     public class PlayerPower : MonoBehaviour
     {
+        public LineRenderer Line;
+
         public Transform CastPoint;
 
         public LayerMask PointMask;
@@ -33,6 +35,12 @@ namespace Electricity
         {
             Active = Input.GetMouseButton(0) && currentPoint != null;
             currentPoint?.Activate(Active);
+            Line.gameObject.SetActive(Active);
+            if (Active && currentPoint != null)
+            {
+                Line.SetPosition(Line.positionCount - 1, currentPoint.transform.position);
+                Line.SetPosition(0, Line.transform.position);
+            }
         }
     }
 }
