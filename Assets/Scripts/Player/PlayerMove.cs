@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour
     public Transform GroundPoint;
     public Vector3 CheckRadious = Vector3.one;
 
+    public static bool noclip;
+
     public LayerMask GroundLayer;
     public float Gravity = 30f;
     public float GroundVelocity = 2f;
@@ -42,9 +44,19 @@ public class PlayerMove : MonoBehaviour
 
     private void CalculateGravity()
     {
-        isGround = Physics.CheckBox(GroundPoint.position, CheckRadious, Quaternion.Euler(0f, 0f, 0f), GroundLayer);
-        velocity -= Gravity * Time.deltaTime;
-        if (isGround) velocity = -GroundVelocity;
-        if (isGround && InputManager.GetInput("Jump")) velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity);
+        switch (noclip)
+        {
+            case true:
+                velocity = 0f;
+                if(InputManager.GetInput("Jump")) velocity += Mathf.Sqrt(JumpHeight * 2f * Gravity);
+                if(Input.GetKey(KeyCode.LeftControl)) velocity -= Mathf.Sqrt(JumpHeight * 2f * Gravity);
+                break;
+            default:
+                isGround = Physics.CheckBox(GroundPoint.position, CheckRadious, Quaternion.Euler(0f, 0f, 0f), GroundLayer);
+                velocity -= Gravity * Time.deltaTime;
+                if (isGround) velocity = -GroundVelocity;
+                if (isGround && InputManager.GetInput("Jump")) velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity);
+                break;
+        }
     }
 }
