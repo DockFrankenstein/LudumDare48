@@ -20,7 +20,6 @@ public class PlayerMove : MonoBehaviour
     public float Speed = 6f;
     public float RunSpeed = 6f;
 
-
     private void Awake()
     {
         charControl = GetComponent<CharacterController>();

@@ -8,7 +8,8 @@ public class PlayerLook : MonoBehaviour
 
     private void Update() => Rotate();
 
-    Vector2 rotation = new Vector2();
+    [HideInInspector]
+    public Vector2 rotation = new Vector2();
 
     private void Awake()
     {
