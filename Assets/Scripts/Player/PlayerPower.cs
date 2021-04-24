@@ -16,6 +16,8 @@ namespace Electricity
 
         private void FixedUpdate()
         {
+            Debug.Log(Physics.Raycast(CastPoint.position, CastPoint.TransformDirection(Vector3.forward), out RaycastHit test, Range, PointMask) +
+                " " + test.transform?.name);
             if (Physics.Raycast(CastPoint.position, CastPoint.TransformDirection(Vector3.forward), out RaycastHit hit, Range, PointMask))
             {
                 Debug.DrawRay(CastPoint.position, CastPoint.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
