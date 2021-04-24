@@ -419,8 +419,8 @@ MonoBehaviour:
   GroundVelocity: 0
   JumpHeight: 2
   platformDetection: {fileID: 759114039}
-  Speed: 6
-  RunSpeed: 12
+  Speed: 3
+  RunSpeed: 7
 --- !u!114 &5580952709643226145
 MonoBehaviour:
   m_ObjectHideFlags: 0
