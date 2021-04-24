@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.4, z: 1}
+  m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!114 &759114039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +59,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformTag: Platform
   isPlatform: 0
-  Player: {fileID: 5580952709643226078}
   platformMove: {x: 0, y: 0, z: 0}
 --- !u!1 &5580952709327977939
 GameObject:
@@ -273,12 +272,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GroundPoint: {fileID: 5580952709497049816}
-  CheckRadious: {x: 1, y: 0.1, z: 1}
+  CheckRadious: {x: 0.5, y: 0.1, z: 0.5}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 1088
   Gravity: 30
-  GroundVelocity: 2
+  GroundVelocity: 0
   JumpHeight: 2
   platformDetection: {fileID: 759114039}
   Speed: 6
