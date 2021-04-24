@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh72762
+  m_Name: pb_Mesh79608
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1481,6 +1481,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1884349811 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5985880209528304519, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
+  m_PrefabInstance: {fileID: 4623486207037406649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1884349812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884349811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f2252ff9ca42c4ea0dce18d6112c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateName: console
+  invert: 1
 --- !u!1001 &1251786251953709984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1545,6 +1564,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1761310339287371322, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
+      propertyPath: OnChangeState.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761310339287371322, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
+      propertyPath: OnChangeState.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761310339287371322, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
+      propertyPath: OnChangeState.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1884349812}
+    - target: {fileID: 1761310339287371322, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
+      propertyPath: OnChangeState.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761310339287371322, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
+      propertyPath: OnChangeState.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeState
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761310339287371322, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
+      propertyPath: OnChangeState.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CursorUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761310339287371322, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
+      propertyPath: OnChangeState.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4049104451556848927, guid: 458adcb2194d87845a4ef6d6dc5e9bf0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

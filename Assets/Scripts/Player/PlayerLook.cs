@@ -13,6 +13,8 @@ public class PlayerLook : MonoBehaviour
 
     private void Awake()
     {
+        CursorManager.ChangeState("global", true);
+
         if (Axis == null)
         {
             qASIC.qDebug.LogError("Player Y Axis has not been assigned!");
