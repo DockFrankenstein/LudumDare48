@@ -5,10 +5,25 @@ namespace Electricity
     public class ActivationPoint : MonoBehaviour
     {
         public SpriteRenderer image;
-
         public float SelectSize = 1.5f;
 
+        public float MaxColliderSize = 5f;
+        public AnimationCurve CollisionDistance;
+
         public ElectricDevice[] devices;
+
+        SphereCollider coll;
+
+        private void Awake()
+        {
+            coll = GetComponent<SphereCollider>();
+        }
+
+        private void Update()
+        {
+            if (PlayerReference.singleton == null) return;
+            coll.radius = CollisionDistance.Evaluate(Vector3.Distance(PlayerReference.singleton.transform.position, transform.position) / MaxColliderSize) * MaxColliderSize;
+        }
 
         public void Select(bool state)
         {

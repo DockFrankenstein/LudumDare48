@@ -47,6 +47,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 5574464245078200067}
   SelectSize: 1.5
+  MaxColliderSize: 10
+  CollisionDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.10522371
+      outSlope: 0.10522371
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.5497125
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: 1.7292762
+      outSlope: 1.7292762
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07998681
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  devices:
+  - {fileID: 0}
 --- !u!135 &5574464244272984288
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -132,8 +159,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c5211224626972d4da933415e66ca406, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0d32ffaf6e8802f439b2bc62fc0f9663, type: 3}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
