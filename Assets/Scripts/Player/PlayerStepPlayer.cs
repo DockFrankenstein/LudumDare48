@@ -23,6 +23,7 @@ public class PlayerStepPlayer : MonoBehaviour
 
     bool CanPlay()
     {
+        if (PlayerMove.noclip) return false;
         if (PlayerReference.singleton?.move == null) return false;
 
         if (PlayerReference.singleton.move.isGround && isFloating) 

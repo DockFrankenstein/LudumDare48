@@ -280,9 +280,11 @@ GameObject:
   - component: {fileID: 5580952709643226146}
   - component: {fileID: 1675069919787233985}
   - component: {fileID: 1420740235152670267}
+  - component: {fileID: 5356975736155490848}
+  - component: {fileID: 6204431439454170205}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GroundPoint: {fileID: 5580952709497049816}
-  CheckRadious: {x: 0.5, y: 0.2, z: 0.5}
+  CheckRadious: {x: 0.5, y: 0.4, z: 0.5}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 1088
@@ -443,6 +445,7 @@ MonoBehaviour:
   look: {fileID: 5580952709643226079}
   power: {fileID: 5580952709643226146}
   damage: {fileID: 1675069919787233985}
+  points: {fileID: 6204431439454170205}
   sounds: {fileID: 1420740235152670267}
 --- !u!114 &5580952709643226146
 MonoBehaviour:
@@ -502,6 +505,30 @@ MonoBehaviour:
   source: {fileID: 8675955495557213973}
   walkDelay: 0.5
   runDelay: 0.4
+--- !u!114 &5356975736155490848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580952709643226073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c42aa241ab8cc40ae757c703727f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6204431439454170205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580952709643226073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07db469f1bedcf848b89afba79f0d8b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5580952710074067036
 GameObject:
   m_ObjectHideFlags: 0
