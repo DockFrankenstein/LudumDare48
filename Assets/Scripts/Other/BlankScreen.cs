@@ -24,21 +24,25 @@ public class BlankScreen : MonoBehaviour
 
     public void ShowAnimated(Action menuShowCallback)
     {
-        StartCoroutine(AnimateColor(menuShowCallback, showedColor));
+        StartCoroutine(AnimateColor(blankingTime, menuShowCallback, showedColor));
     }
     public void HideAnimated(Action menuHideCallback)
     {
-        StartCoroutine(AnimateColor(menuHideCallback, hidedColor));
+        StartCoroutine(AnimateColor(blankingTime, menuHideCallback, hidedColor));
     }
-    
-    IEnumerator AnimateColor(Action animationEndCallback, Color destinationColor)
+    public void HideAnimated(float duration, Action menuHideCallback)
+    {
+        StartCoroutine(AnimateColor(duration, menuHideCallback, hidedColor));
+    }
+
+    IEnumerator AnimateColor(float duration, Action animationEndCallback, Color destinationColor)
     {
         graphic = GetGraphic();
         yield return UIAnimations.AnimateGraphicsColor(
             graphic,
             graphic.color,
             destinationColor,
-            AnimationCurve.Linear(0, 0, blankingTime, 1),
+            AnimationCurve.Linear(0, 0, duration, 1),
             0,
             () => animationEndCallback?.Invoke());
         graphic.color = destinationColor;

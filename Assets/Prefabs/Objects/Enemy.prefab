@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a64cddc4607939468419b2a27812456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseForceMagnitude: 10.3
-  maxVelocityMagnitude: 23.85
-  spotDistance: 11.84
+  chaseForceMagnitude: 20
+  maxVelocityMagnitude: 15
+  spotDistance: 20
   disarmedMaterial: {fileID: 2100000, guid: ed511fcefe8ddaf4ba3c02993edd8773, type: 2}
 --- !u!54 &2281822466427786109
 Rigidbody:

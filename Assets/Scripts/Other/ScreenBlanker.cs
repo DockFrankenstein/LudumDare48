@@ -9,8 +9,11 @@ public class ScreenBlanker : MonoBehaviour
     
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        instance = this;
+        if(instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
     }
     private void Start()
     {
@@ -26,9 +29,13 @@ public class ScreenBlanker : MonoBehaviour
     {
         instance.blankScreen.HideAnimated(onBlackedOutEvent);
     }
+    public static void BlackOutScreen(float duration, Action onBlackedOutEvent)
+    {
+        instance.blankScreen.HideAnimated(duration, onBlackedOutEvent);
+    }
     public static void PresentScreen(Action onPresentedCallback)
     {
-        instance.blankScreen.ShowAnimated(onPresentedCallback);
+    
     }
     public static void SetBlackScreen()
     {

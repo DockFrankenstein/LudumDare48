@@ -50,7 +50,7 @@ public class Particle : MonoBehaviour
     }
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 7)
+        if (col.gameObject.layer == 7 && chasing)
         {
             PlayerReference.singleton.damage.Kill();
             Destroy(gameObject);
