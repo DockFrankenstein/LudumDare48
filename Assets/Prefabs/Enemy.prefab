@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2281822466427786055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.709, y: 0.063, z: 6.272}
-  m_LocalScale: {x: 0.1178, y: 0.1178, z: 0.1178}
+  m_LocalScale: {x: 0.6645098, y: 0.6645098, z: 0.6645098}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a64cddc4607939468419b2a27812456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseForceMagnitude: 2.53
+  chaseForceMagnitude: 10.3
   maxVelocityMagnitude: 23.85
+  spotDistance: 11.84
   disarmedMaterial: {fileID: 2100000, guid: ed511fcefe8ddaf4ba3c02993edd8773, type: 2}
 --- !u!54 &2281822466427786109
 Rigidbody:
@@ -114,7 +115,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!135 &2281822466427786105
 SphereCollider:
   m_ObjectHideFlags: 0

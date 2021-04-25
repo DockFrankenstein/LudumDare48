@@ -8,19 +8,34 @@ public class Particle : MonoBehaviour
     Rigidbody rb;
     public float chaseForceMagnitude;
     public float maxVelocityMagnitude;
+    public float spotDistance;
     bool playerSpotted;
     bool chasing;
     public Material disarmedMaterial;
 
     void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = PlayerReference.singleton.transform;
         rb = GetComponent<Rigidbody>();
     }
     private void FixedUpdate()
     {
-        if(playerSpotted && chasing)
+        if (playerSpotted && chasing)
             UpdatePosition();
+        else if (!playerSpotted && IsTriggered())
+            SpotPlayer();
+    }
+    bool IsTriggered()
+    {
+        Vector3 distanceVector = playerTransform.position - transform.position;
+        Physics.Raycast(
+            new Ray(transform.position, distanceVector.normalized), 
+            out RaycastHit hit, 
+            spotDistance, 
+            ~LayerMask.NameToLayer("Particles"));
+        
+        return distanceVector.magnitude <= spotDistance && 
+            hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
     }
     public void SpotPlayer()
     {
@@ -33,15 +48,13 @@ public class Particle : MonoBehaviour
         rb.velocity += force * Time.deltaTime;
         rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxVelocityMagnitude);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-            Destroy(gameObject);
-    }
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.layer == 7)
-        { Destroy(gameObject); }
+        {
+            PlayerReference.singleton.damage.Kill();
+            Destroy(gameObject);
+        }
         else
         {
             chasing = false;

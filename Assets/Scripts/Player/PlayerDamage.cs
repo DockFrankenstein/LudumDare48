@@ -18,6 +18,6 @@ public class PlayerDamage : MonoBehaviour
     public void Kill()
     {
         isDead = true;
-        qDebug.Log("Player died, restarting level", "Player");  
+        qDebug.Log("Player died, restarting level", "Player");
     }
 }
