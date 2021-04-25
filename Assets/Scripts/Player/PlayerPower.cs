@@ -19,7 +19,7 @@ namespace Electricity
         {
             if (Physics.Raycast(CastPoint.position, CastPoint.TransformDirection(Vector3.forward), out RaycastHit hit, Range, DetectionMask))
             {
-                if (((1 << hit.transform.gameObject.layer) & PointMask) == 0)
+                if (((1 << hit.transform.gameObject.layer) & PointMask) == 0 || Active)
                 {
                     RemovePoint();
                     return;
