@@ -5,31 +5,39 @@ using UnityEngine;
 public class Particle : MonoBehaviour
 {
     Transform playerTransform;
+    Rigidbody rb;
     public float chaseForceMagnitude;
     public float maxVelocityMagnitude;
-    public bool chasing;
-    Vector3 velocity;
-    Rigidbody rigidbody;
+    public float spotDistance;
+    bool playerSpotted;
+    bool chasing;
     public Material disarmedMaterial;
 
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        rigidbody = GetComponent<Rigidbody>();
-        chasing = true;
+        rb = GetComponent<Rigidbody>();
     }
-
-    void Update()
+    private void FixedUpdate()
     {
-        if(chasing)
+        if(playerSpotted && chasing)
             UpdatePosition();
-
+        else if(!playerSpotted)
+        {
+            playerSpotted = chasing = HasSpottedPlayer();
+        }
+    }
+    bool HasSpottedPlayer()
+    {
+        Vector3 distanceVector = playerTransform.position - transform.position;
+        Physics.Raycast(new Ray(transform.position, distanceVector.normalized), out RaycastHit hit, spotDistance, ~LayerMask.NameToLayer("Particles"));
+        return distanceVector.magnitude <= spotDistance && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
     }
     void UpdatePosition()
     {
         Vector3 force = chaseForceMagnitude * (playerTransform.position - transform.position).normalized;
-        rigidbody.velocity += force * Time.deltaTime;
-        rigidbody.velocity = rigidbody.velocity.normalized * Mathf.Clamp(rigidbody.velocity.magnitude, 0, maxVelocityMagnitude);
+        rb.velocity += force * Time.deltaTime;
+        rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxVelocityMagnitude);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -42,13 +50,9 @@ public class Particle : MonoBehaviour
         { Destroy(gameObject); }
         else
         {
-            if (Random.Range(0, 10) == 2)
-            {
-                DisarmParticle();
-                rigidbody.useGravity = true;
-            }
+            DisarmParticle();
+            rb.useGravity = true;
         }
-
     }
     void DisarmParticle()
     {
