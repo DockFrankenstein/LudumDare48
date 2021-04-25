@@ -48,8 +48,8 @@ public class Elevator : MonoBehaviour
             qDebug.LogError("Cannot load scene in elevator!");
             return;
         }
-
-        SceneManager.LoadScene(sceneName);
+        ScreenBlanker.BlackOutScreen(() =>
+            SceneManager.LoadScene(sceneName));
     }
 
     IEnumerator InvokeActionAfterDelay(UnityAction action, float delay)

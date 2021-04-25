@@ -11,6 +11,7 @@ public class MenuLoadScene : MonoBehaviour
             qDebug.LogError("Scene couldn't be loaded!");
             return;
         }
-        SceneManager.LoadScene(sceneName);
+        ScreenBlanker.BlackOutScreen(() =>
+            SceneManager.LoadScene(sceneName));
     }
 }
