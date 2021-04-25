@@ -16,7 +16,9 @@ public class PlayerMove : MonoBehaviour
     public float Gravity = 30f;
     public float GroundVelocity = 2f;
     public float JumpHeight = 10f;
-    bool isGround;
+    public bool isGround;
+    public bool walking;
+    public bool running;
 
     [Header("Walking")]
     public PlatformDetection platformDetection;
@@ -32,7 +34,9 @@ public class PlayerMove : MonoBehaviour
     {
         float x = InputManager.GetAxis("WalkRight", "WalkLeft");
         float z = InputManager.GetAxis("WalkUp", "WalkDown");
-        Vector3 path = (transform.right * x + transform.forward * z).normalized * (InputManager.GetInput("Sprint") ? RunSpeed : Speed);
+        running = InputManager.GetInput("Sprint");
+        Vector3 path = (transform.right * x + transform.forward * z).normalized * (running ? RunSpeed : Speed);
+        walking = path == Vector3.zero;
 
         CalculateGravity();
         path.y = velocity;
