@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 759114037}
   - component: {fileID: 759114038}
   - component: {fileID: 759114039}
+  - component: {fileID: 3567566413020109925}
   m_Layer: 7
   m_Name: Platform Detection
   m_TagString: Untagged
@@ -60,6 +61,18 @@ MonoBehaviour:
   platformTag: Platform
   isPlatform: 0
   platformMove: {x: 0, y: 0, z: 0}
+--- !u!114 &3567566413020109925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759114036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c42aa241ab8cc40ae757c703727f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3610743616919968278
 GameObject:
   m_ObjectHideFlags: 0
