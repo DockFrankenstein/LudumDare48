@@ -8,7 +8,6 @@ public class Particle : MonoBehaviour
     Rigidbody rb;
     public float chaseForceMagnitude;
     public float maxVelocityMagnitude;
-    public float spotDistance;
     bool playerSpotted;
     bool chasing;
     public Material disarmedMaterial;
@@ -22,16 +21,11 @@ public class Particle : MonoBehaviour
     {
         if(playerSpotted && chasing)
             UpdatePosition();
-        else if(!playerSpotted)
-        {
-            playerSpotted = chasing = HasSpottedPlayer();
-        }
     }
-    bool HasSpottedPlayer()
+    public void SpotPlayer()
     {
-        Vector3 distanceVector = playerTransform.position - transform.position;
-        Physics.Raycast(new Ray(transform.position, distanceVector.normalized), out RaycastHit hit, spotDistance, ~LayerMask.NameToLayer("Particles"));
-        return distanceVector.magnitude <= spotDistance && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
+        rb.velocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)); 
+        playerSpotted = chasing = true;
     }
     void UpdatePosition()
     {
@@ -50,13 +44,9 @@ public class Particle : MonoBehaviour
         { Destroy(gameObject); }
         else
         {
-            DisarmParticle();
+            chasing = false;
+            GetComponent<MeshRenderer>().material = disarmedMaterial;
             rb.useGravity = true;
         }
-    }
-    void DisarmParticle()
-    {
-        chasing = false;
-        GetComponent<MeshRenderer>().material = disarmedMaterial;
     }
 }
