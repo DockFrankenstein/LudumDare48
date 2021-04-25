@@ -52,7 +52,11 @@ public class PlayerMove : MonoBehaviour
                 if(Input.GetKey(KeyCode.LeftControl)) velocity -= Mathf.Sqrt(JumpHeight * 2f * Gravity);
                 break;
             default:
+                bool lastGround = isGround;
                 isGround = Physics.CheckBox(GroundPoint.position, CheckRadious, Quaternion.Euler(0f, 0f, 0f), GroundLayer);
+
+                if (!lastGround && isGround) PlayerReference.singleton?.damage?.HandleVelocity(velocity);
+
                 velocity -= Gravity * Time.deltaTime;
                 if (isGround) velocity = -GroundVelocity;
                 if (isGround && InputManager.GetInput("Jump")) velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using qASIC;
 
 public class PlayerReference : MonoBehaviour
 {
@@ -7,10 +8,15 @@ public class PlayerReference : MonoBehaviour
     public PlayerMove move;
     public PlayerLook look;
     public Electricity.PlayerPower power;
+    public PlayerDamage damage;
 
     private void Awake()
     {
-        if (singleton == null) singleton = this;
+        if (singleton == null)
+        {
+            singleton = this;
+            qDebug.Log("Assigned player", "Player");
+        }
         if (singleton != this) Destroy(gameObject);
     }
 }

@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 5580952709643226144}
   - component: {fileID: 5580952709643226145}
   - component: {fileID: 5580952709643226146}
+  - component: {fileID: 1675069919787233985}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -436,6 +437,7 @@ MonoBehaviour:
   move: {fileID: 5580952709643226144}
   look: {fileID: 5580952709643226079}
   power: {fileID: 5580952709643226146}
+  damage: {fileID: 1675069919787233985}
 --- !u!114 &5580952709643226146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +460,21 @@ MonoBehaviour:
     m_Bits: 512
   Range: 32
   Active: 0
+--- !u!114 &1675069919787233985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580952709643226073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31bb27bbe1cf0048a27d7b4b384c5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityDamageThreshold: 18
+  reciveFallDamage: 1
+  isDead: 0
 --- !u!1 &5580952710074067036
 GameObject:
   m_ObjectHideFlags: 0
