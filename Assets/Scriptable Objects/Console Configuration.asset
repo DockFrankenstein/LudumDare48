@@ -18,6 +18,6 @@ MonoBehaviour:
   LogConfigAssigment: 1
   ShowInputMessages: 1
   LogScene: 1
-  LogUnityErrorsToConsole: 0
+  LogUnityErrorsToConsole: 1
   LogUnityWarningsToConsole: 0
   LogUnityMessagesToConsole: 0
