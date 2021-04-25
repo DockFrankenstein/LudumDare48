@@ -419,7 +419,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1088
   Gravity: 30
-  GroundVelocity: 0
+  GroundVelocity: 5
   JumpHeight: 1.4
   isGround: 0
   walking: 0
@@ -558,8 +558,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.1
+  far clip plane: 400
   field of view: 60
   orthographic: 0
   orthographic size: 5
