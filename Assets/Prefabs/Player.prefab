@@ -417,10 +417,10 @@ MonoBehaviour:
     m_Bits: 1088
   Gravity: 30
   GroundVelocity: 0
-  JumpHeight: 2
+  JumpHeight: 1.4
   platformDetection: {fileID: 759114039}
-  Speed: 6
-  RunSpeed: 12
+  Speed: 3
+  RunSpeed: 7
 --- !u!114 &5580952709643226145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Line: {fileID: 5677532975743980364}
   CastPoint: {fileID: 5580952710285621573}
+  DetectionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   PointMask:
     serializedVersion: 2
     m_Bits: 512

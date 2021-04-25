@@ -53,27 +53,26 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0.10522371
-      outSlope: 0.10522371
+      value: 0.05
+      inSlope: 0.018919695
+      outSlope: 0.018919695
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 3
       inWeight: 0
-      outWeight: 0.5497125
+      outWeight: 0.8041667
     - serializedVersion: 3
       time: 1
-      value: 0.5
-      inSlope: 1.7292762
-      outSlope: 1.7292762
+      value: 0.2506981
+      inSlope: 1.7717079
+      outSlope: 1.7717079
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07998681
+      weightedMode: 3
+      inWeight: 0.15302801
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  devices:
-  - {fileID: 0}
+  devices: []
 --- !u!135 &5574464244272984288
 SphereCollider:
   m_ObjectHideFlags: 0
