@@ -7,7 +7,8 @@ public class LoadSceneTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player") return;
-        SceneManager.LoadScene(sceneName);
+        if (other.tag != "Player") return; 
+        ScreenBlanker.BlackOutScreen(() =>
+             SceneManager.LoadScene(sceneName));
     }
 }
