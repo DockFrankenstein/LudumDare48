@@ -17,6 +17,8 @@ public class Elevator : MonoBehaviour
     public string DoorOpenTriggerName = "open";
     public float DoorOpenDelay = 3f;
 
+    bool isUsed;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -36,7 +38,8 @@ public class Elevator : MonoBehaviour
 
     public void OnInElevator(Collider collider)
     {
-        if (!isEnd) return;
+        if (!isEnd || isUsed) return;
+        isUsed = true;
         anim?.SetTrigger(DoorCloseTriggerName);
         StartCoroutine(InvokeActionAfterDelay(LoadScene, SceneLoadDelay));
     }
