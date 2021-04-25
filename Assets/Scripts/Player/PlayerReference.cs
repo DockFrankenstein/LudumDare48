@@ -10,6 +10,7 @@ public class PlayerReference : MonoBehaviour
     public Electricity.PlayerPower power;
     public PlayerDamage damage;
     public PlayerPoints points;
+    public PlayerStepPlayer sounds;
 
     private void Awake()
     {
