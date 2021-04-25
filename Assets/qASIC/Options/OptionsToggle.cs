@@ -13,14 +13,14 @@ namespace qASIC.Options.Menu
 
         public void SetValue(bool state) 
         { 
-            SetValue(state, true); 
+            SetValue(state, true);
             OnValueChange.Invoke(state != InvertEvent); 
         }
 
         public override string GetLabel()
         {
             if (_toggle == null) return string.Empty;
-            return $"{NameText}{_toggle.isOn}";
+            return $"{OptionLabelName}{_toggle.isOn}";
         }
 
         public override void LoadOption()
