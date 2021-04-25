@@ -1119,7 +1119,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592436455538823281, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
       propertyPath: m_Name
-      value: Elevator (1)
+      value: End elevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849029968092057930, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
+      propertyPath: isEnd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849029968092057930, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
+      propertyPath: sceneName
+      value: Level3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
@@ -1671,7 +1679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592436455538823281, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
       propertyPath: m_Name
-      value: Elevator
+      value: Start Elevator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f63d1ce11e08842408a4836e045902f2, type: 3}

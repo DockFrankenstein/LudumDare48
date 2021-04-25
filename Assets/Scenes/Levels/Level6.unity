@@ -1059,7 +1059,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-185560
+  m_Name: pb_Mesh77558
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1351,7 +1351,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-177002
+  m_Name: pb_Mesh77586
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1828,6 +1828,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1675069919787233985, guid: fb657d512bc7acc49b89f0164cf2eedc, type: 3}
+      propertyPath: reciveFallDamage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5580952709643226073, guid: fb657d512bc7acc49b89f0164cf2eedc, type: 3}
       propertyPath: m_Name
       value: Player

@@ -339,7 +339,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-283470
+  m_Name: pb_Mesh-500910
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2418,6 +2418,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: End Elevator
       objectReference: {fileID: 0}
+    - target: {fileID: 7849029968092057930, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
+      propertyPath: isEnd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849029968092057930, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
+      propertyPath: sceneName
+      value: Level5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
 --- !u!1001 &1790100371
@@ -2473,7 +2481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1255214128704178598, guid: c72f4f1724ee1eb47b8b87c6e166faeb, type: 3}
       propertyPath: m_Name
-      value: Moving floor (1)
+      value: Moving floor
       objectReference: {fileID: 0}
     - target: {fileID: 1255214129036677776, guid: c72f4f1724ee1eb47b8b87c6e166faeb, type: 3}
       propertyPath: m_Mesh

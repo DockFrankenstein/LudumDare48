@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-340124
+  m_Name: pb_Mesh-501892
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2424,7 +2424,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44338
+  m_Name: pb_Mesh79754
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3516,7 +3516,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44380
+  m_Name: pb_Mesh79798
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3681,6 +3681,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 81583499376669371, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 582540773149578988, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5592436455538823280, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -3727,7 +3735,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592436455538823281, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
       propertyPath: m_Name
-      value: Elevator (1)
+      value: Fake Elevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849029968092057930, guid: f63d1ce11e08842408a4836e045902f2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f63d1ce11e08842408a4836e045902f2, type: 3}

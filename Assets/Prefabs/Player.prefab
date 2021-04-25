@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GroundPoint: {fileID: 5580952709497049816}
-  CheckRadious: {x: 0.5, y: 0.1, z: 0.5}
+  CheckRadious: {x: 0.5, y: 0.2, z: 0.5}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 1088
