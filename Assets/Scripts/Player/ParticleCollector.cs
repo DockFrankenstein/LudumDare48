@@ -8,7 +8,6 @@ public class ParticleCollector : MonoBehaviour
     {
         if (other.gameObject.layer == 10)
         {
-            Debug.Log("Player collected point");
             PlayerReference.singleton.points.Score();
             Destroy(other.gameObject);
         }
