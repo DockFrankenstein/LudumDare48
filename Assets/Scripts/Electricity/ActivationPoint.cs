@@ -32,7 +32,6 @@ namespace Electricity
 
         public void Activate(bool state)
         {
-            Debug.Log(state);
             for (int i = 0; i < devices.Length; i++)
                 devices[i].isOn = state;
         }

@@ -72,8 +72,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  devices:
-  - {fileID: 0}
+  devices: []
 --- !u!135 &5574464244272984288
 SphereCollider:
   m_ObjectHideFlags: 0
