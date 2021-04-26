@@ -8,7 +8,7 @@ public class EnemyActivationTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag != "Player") return;
-        if (target == null) qDebug.LogError("Couldn't activate fragment, target is null!");
+        if (target == null) return;
         target?.SpotPlayer();
     }
 }
