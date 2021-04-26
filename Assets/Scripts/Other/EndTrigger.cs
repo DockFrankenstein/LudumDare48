@@ -41,7 +41,6 @@ public class EndTrigger : MonoBehaviour
             player.rotation = Quaternion.Lerp(startRotation, endRotation, curve.Evaluate(t));
             yield return new WaitForSeconds(0.01f);
         }
-        yield return new WaitForSeconds(2.0f);
 
         if (PointCounter.GetMaximumPoints() == PointCounter.GetPoints())
         {
