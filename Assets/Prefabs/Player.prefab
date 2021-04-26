@@ -433,7 +433,7 @@ MonoBehaviour:
   CheckRadious: {x: 0.5, y: 0.4, z: 0.5}
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 3648
   Gravity: 30
   GroundVelocity: 5
   JumpHeight: 1.4
@@ -477,7 +477,7 @@ MonoBehaviour:
   CastPoint: {fileID: 5580952710285621573}
   DetectionMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 577
   PointMask:
     serializedVersion: 2
     m_Bits: 512
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31bb27bbe1cf0048a27d7b4b384c5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityDamageThreshold: 18
+  velocityDamageThreshold: 20
   reciveFallDamage: 1
   isDead: 0
 --- !u!114 &1420740235152670267
