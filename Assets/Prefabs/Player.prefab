@@ -337,7 +337,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5580952709643226073}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -429,6 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01e6d806def27f4d9aa882d65a8cc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charControl: {fileID: 0}
   GroundPoint: {fileID: 5580952709497049816}
   CheckRadious: {x: 0.5, y: 0.4, z: 0.5}
   GroundLayer:
@@ -498,6 +499,7 @@ MonoBehaviour:
   velocityDamageThreshold: 20
   reciveFallDamage: 1
   isDead: 0
+  maxDrag: {x: 3, y: 1, z: 3}
 --- !u!114 &1420740235152670267
 MonoBehaviour:
   m_ObjectHideFlags: 0

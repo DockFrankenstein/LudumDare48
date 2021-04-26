@@ -14,6 +14,8 @@ public class ScreenBlanker : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             instance = this;
         }
+        else
+            Destroy(gameObject);
     }
     private void Start()
     {
@@ -35,7 +37,7 @@ public class ScreenBlanker : MonoBehaviour
     }
     public static void PresentScreen(Action onPresentedCallback)
     {
-    
+        instance.blankScreen.ShowAnimated(onPresentedCallback);
     }
     public static void SetBlackScreen()
     {
