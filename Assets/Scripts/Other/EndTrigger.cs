@@ -38,7 +38,7 @@ public class EndTrigger : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(2.0f);
-        ScreenBlanker.BlackOutScreen(() => SceneManager.LoadScene("EndLevel"));
+        ScreenBlanker.BlackOutScreen(() => SceneManager.LoadScene("EndScene"));
     }
 
 }
