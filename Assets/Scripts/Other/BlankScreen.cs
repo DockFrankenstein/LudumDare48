@@ -12,6 +12,8 @@ public class BlankScreen : MonoBehaviour
 
     public float blankingTime = 1;
     public bool hideOnSceneLoad = false;
+
+    public Image Blocker;
     
     public void Show()
     {
@@ -37,6 +39,7 @@ public class BlankScreen : MonoBehaviour
 
     IEnumerator AnimateColor(float duration, Action animationEndCallback, Color destinationColor)
     {
+        if (Blocker != null) Blocker.raycastTarget = true;
         graphic = GetGraphic();
         yield return UIAnimations.AnimateGraphicsColor(
             graphic,
@@ -46,6 +49,7 @@ public class BlankScreen : MonoBehaviour
             0,
             () => animationEndCallback?.Invoke());
         graphic.color = destinationColor;
+        if (Blocker != null) Blocker.raycastTarget = false;
     }
 
     Graphic GetGraphic()

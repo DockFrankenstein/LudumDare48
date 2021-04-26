@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -92,6 +92,7 @@ MonoBehaviour:
   hidedColor: {r: 0, g: 0, b: 0, a: 1}
   blankingTime: 1
   hideOnSceneLoad: 1
+  Blocker: {fileID: 1579797050792513234}
 --- !u!1 &1579797051410183431
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +105,7 @@ GameObject:
   - component: {fileID: 1579797051410183427}
   - component: {fileID: 1579797051410183426}
   - component: {fileID: 1579797051410183424}
+  - component: {fileID: 43848170633173806}
   m_Layer: 5
   m_Name: ScreenBlanker
   m_TagString: Untagged
@@ -187,3 +189,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8547e800abd2274e9ff2dd3fca8af86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &43848170633173806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579797051410183431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

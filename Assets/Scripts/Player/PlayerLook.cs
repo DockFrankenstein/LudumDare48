@@ -8,7 +8,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        if (!Active) return;
+        if (!Active || Time.timeScale == 0f) return;
         Rotate();
     }
 
