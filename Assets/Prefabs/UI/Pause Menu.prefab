@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 9213375620234944663}
   - component: {fileID: 9213375620234944660}
   - component: {fileID: 9213375620234944661}
+  - component: {fileID: 8688588987310324535}
   m_Layer: 0
   m_Name: Pause Menu
   m_TagString: Untagged
@@ -473,6 +474,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8688588987310324535}
+        m_TargetAssemblyTypeName: CursorUI, Assembly-CSharp
+        m_MethodName: ChangeState
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9213375620234944661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +500,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetOnAwake: 1
   StartTime: 1
+--- !u!114 &8688588987310324535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9213375620234944658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f2252ff9ca42c4ea0dce18d6112c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateName: global
+  invert: 1
+  onAwake: 0
 --- !u!1 &9213375620248734017
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +736,7 @@ GameObject:
   - component: {fileID: 9213375620525997107}
   - component: {fileID: 9213375620525997104}
   - component: {fileID: 9213375620525997105}
+  - component: {fileID: 736694324577494928}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -887,6 +916,18 @@ MonoBehaviour:
           m_StringArgument: Menu
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 736694324577494928}
+        m_TargetAssemblyTypeName: StopMusic, Assembly-CSharp
+        m_MethodName: StopAllMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9213375620525997104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -912,5 +953,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d6098bf90f05164e8321eda45037c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &736694324577494928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9213375620525997119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7e7d2eb4304ae41a562543888c737b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
