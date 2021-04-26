@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using qASIC.AudioManagment;
 
 public class EndTrigger : MonoBehaviour
 {
     public Transform endPosition;
     public Transform endRotationDir;
+
+    public AudioData announcerGood;
+    public AudioData announcerBad;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -38,7 +42,19 @@ public class EndTrigger : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(2.0f);
-        ScreenBlanker.BlackOutScreen(() => SceneManager.LoadScene("EndScene"));
+
+        if (PointCounter.GetMaximumPoints() == PointCounter.GetPoints())
+        {
+            AudioManager.Play("announcer", announcerGood);
+            yield return new WaitForSecondsRealtime(announcerGood.clip.length);
+        }
+        else
+        {
+            AudioManager.Play("announcer", announcerBad);
+            yield return new WaitForSecondsRealtime(announcerBad.clip.length);
+        }
+
+        ScreenBlanker.BlackOutScreen(() => SceneManager.LoadScene("Menu"));
     }
 
 }
