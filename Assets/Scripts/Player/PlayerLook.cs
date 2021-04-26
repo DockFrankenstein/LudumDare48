@@ -6,10 +6,16 @@ public class PlayerLook : MonoBehaviour
 
     public float MouseSensitivity = 1f;
 
-    private void Update() => Rotate();
+    private void Update()
+    {
+        if (!Active) return;
+        Rotate();
+    }
 
     [HideInInspector]
     public Vector2 rotation = new Vector2();
+
+    public static bool Active = true;
 
     private void Awake()
     {
