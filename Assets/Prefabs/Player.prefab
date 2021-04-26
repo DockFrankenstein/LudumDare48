@@ -380,10 +380,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charControl: {fileID: 0}
   GroundPoint: {fileID: 5580952709497049816}
-  CheckRadious: {x: 0.5, y: 0.4, z: 0.5}
+  CheckRadious: {x: 0.4, y: 0.4, z: 0.4}
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 3648
+    m_Bits: 7744
   Gravity: 30
   GroundVelocity: 5
   JumpHeight: 1.4
