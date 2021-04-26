@@ -8,27 +8,18 @@ namespace Menu
     {
         public TextMeshProUGUI text;
 
-        public string startText;
-        public string endText;
-
-        string mainText;
-
-        private void Awake()
-        {
-            if (text == null) return;
-            mainText = text.text;
-        }
+        public Vector4 Margins;
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (text == null) return;
-            text.text = $"{startText}{mainText}{endText}";
+            text.margin = Margins;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             if (text == null) return;
-            text.text = mainText;
+            text.margin = Vector4.zero;
         }
     }
 }

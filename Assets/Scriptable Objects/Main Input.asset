@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Main Input
   m_EditorClassIdentifier: 
   Preset:
-    SavePath: qASIC/Input.txt
+    SavePath: Input.txt
   _keys:
   - WalkUp
   - WalkDown
@@ -21,4 +21,4 @@ MonoBehaviour:
   - WalkRight
   - Jump
   - Sprint
-  _values: 770000007300000061000000640000002000000030010000
+  _values: 11010000120100001401000013010000780000007a000000

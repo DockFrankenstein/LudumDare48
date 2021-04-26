@@ -6,6 +6,7 @@ namespace qASIC.InputManagement.Menu
     public class InputAssign : MonoBehaviour
     {
         public string KeyName;
+        public string Label;
         public TMPro.TextMeshProUGUI KeyText;
 
         public InputListener Listener;
@@ -18,8 +19,8 @@ namespace qASIC.InputManagement.Menu
 
         private void Update()
         {
-            if (KeyText != null && InputManager.GlobalKeys.Presets.ContainsKey(KeyName)) 
-                KeyText.text = InputManager.GlobalKeys.Presets[KeyName].ToString();
+            if (KeyText != null && InputManager.GlobalKeys.Presets.ContainsKey(KeyName))
+                KeyText.text = $"{Label}{InputManager.GlobalKeys.Presets[KeyName]}";
         }
 
         public void StartListening()

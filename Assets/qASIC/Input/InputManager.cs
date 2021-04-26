@@ -38,7 +38,7 @@ namespace qASIC.InputManagement
         {
             string path = $"{Application.persistentDataPath}/{GlobalKeys.SavePath}";
             foreach (var entry in GlobalKeys.Presets)
-                FileManagement.ConfigController.SetSetting(path, entry.Key, entry.Value.ToString());
+                FileManagement.ConfigController.SetSettingFromFile(path, entry.Key, entry.Value.ToString());
         }
 
         public static void LoadUserKeys()

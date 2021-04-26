@@ -47,7 +47,11 @@ public class AmbientManager : MonoBehaviour
     public void Play()
     {
         data.clip = ambient;
-        if (data.clip == null) return;
+        if (data.clip == null)
+        {
+            AudioManager.Stop("ambient");
+            return;
+        }
         AudioManager.Play("ambient", data);
     }
 }
