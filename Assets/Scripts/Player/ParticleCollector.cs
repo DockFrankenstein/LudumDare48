@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ParticleCollector : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class ParticleCollector : MonoBehaviour
         {
             FragmentController particle = other.gameObject.GetComponent<FragmentController>();
             if (particle == null || particle.chasing) return;
-            PlayerReference.singleton.points.Score();
             Destroy(other.gameObject);
+            PointCounter.ScorePoint();
         }
     }
 }

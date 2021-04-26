@@ -20,6 +20,7 @@ public class FragmentController : MonoBehaviour
     {
         playerTransform = PlayerReference.singleton.transform;
         rb = GetComponent<Rigidbody>();
+        PointCounter.IncrementMaxPoints();
     }
     private void FixedUpdate()
     {
@@ -36,9 +37,9 @@ public class FragmentController : MonoBehaviour
             out RaycastHit hit, 
             spotDistance,
             layer);
-        
-        return distanceVector.magnitude <= spotDistance && 
-            hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
+
+        return distanceVector.magnitude <= spotDistance && (
+            hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"));
     }
     public void SpotPlayer()
     {

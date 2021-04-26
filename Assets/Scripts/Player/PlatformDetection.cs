@@ -27,7 +27,7 @@ public class PlatformDetection : MonoBehaviour
         isPlatform = false;
         previous = Vector3.zero;
     }
-
+    
     private void Update()
     {
         if (!isPlatform)
