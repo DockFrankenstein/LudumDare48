@@ -100,6 +100,9 @@ MonoBehaviour:
   maxVelocityMagnitude: 15
   spotDistance: 20
   disarmedMaterial: {fileID: 2100000, guid: ed511fcefe8ddaf4ba3c02993edd8773, type: 2}
+  layer:
+    serializedVersion: 2
+    m_Bits: 1015
 --- !u!54 &2281822466427786109
 Rigidbody:
   m_ObjectHideFlags: 0

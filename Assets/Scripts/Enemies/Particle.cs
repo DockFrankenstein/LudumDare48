@@ -12,6 +12,7 @@ public class Particle : MonoBehaviour
     bool playerSpotted;
     bool chasing;
     public Material disarmedMaterial;
+    public LayerMask layer;
 
     void Start()
     {
@@ -31,8 +32,8 @@ public class Particle : MonoBehaviour
         Physics.Raycast(
             new Ray(transform.position, distanceVector.normalized), 
             out RaycastHit hit, 
-            spotDistance, 
-            ~LayerMask.NameToLayer("Particles"));
+            spotDistance,
+            layer);
         
         return distanceVector.magnitude <= spotDistance && 
             hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
