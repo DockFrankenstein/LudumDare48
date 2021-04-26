@@ -11,7 +11,9 @@ public class FragmentController : MonoBehaviour
     public float spotDistance;
     bool playerSpotted;
     public bool chasing;
-    public Material disarmedMaterial;
+
+    public UnityEngine.Events.UnityEvent OnDischarge = new UnityEngine.Events.UnityEvent();
+
     public LayerMask layer;
 
     void Start()
@@ -57,10 +59,10 @@ public class FragmentController : MonoBehaviour
             PlayerReference.singleton.damage.Kill();
             Destroy(gameObject);
         }
-        else
+        else if (chasing)
         {
             chasing = false;
-            GetComponent<MeshRenderer>().material = disarmedMaterial;
+            OnDischarge.Invoke();
             rb.useGravity = true;
         }
     }
