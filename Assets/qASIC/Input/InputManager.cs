@@ -20,7 +20,7 @@ namespace qASIC.InputManagement
         }
         #endregion
 
-        private static InputManagerKeys _global;
+        private static InputManagerKeys _global = new InputManagerKeys();
         public static InputManagerKeys GlobalKeys
         {
             get 
@@ -30,7 +30,8 @@ namespace qASIC.InputManagement
             }
             set
             {
-                _global = value;
+                _global.SavePath = value.SavePath;
+                _global.Presets = new Dictionary<string, KeyCode>(value.Presets);
             }
         }
 

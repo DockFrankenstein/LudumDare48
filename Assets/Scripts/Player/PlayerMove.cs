@@ -34,7 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (!Active) return;
+        //if (!Active) return;
         float x = InputManager.GetAxis("WalkRight", "WalkLeft");
         float z = InputManager.GetAxis("WalkUp", "WalkDown");
         running = InputManager.GetInput("Sprint");
