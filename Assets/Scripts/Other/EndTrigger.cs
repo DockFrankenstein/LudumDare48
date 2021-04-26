@@ -40,7 +40,6 @@ public class EndTrigger : MonoBehaviour
             ? announcerGood : announcerBad;
 
         AudioManager.Play("announcer", announcerBad);
-        yield return new WaitForSecondsRealtime(announcerBad.clip.length);
         
         for(float t = 0; t < animDuration; t += 0.01f)
         {
@@ -49,6 +48,7 @@ public class EndTrigger : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
+        yield return new WaitForSecondsRealtime(announcerBad.clip.length);
         ScreenBlanker.BlackOutScreen(() => SceneManager.LoadScene("Menu"));
     }
 
