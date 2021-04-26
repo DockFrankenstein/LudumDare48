@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2281822466427786054}
   - component: {fileID: 2281822466427786109}
   - component: {fileID: 2281822466427786105}
+  - component: {fileID: 6178734390916910506}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -96,9 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a64cddc4607939468419b2a27812456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseForceMagnitude: 20
+  chaseForceMagnitude: 256
   maxVelocityMagnitude: 15
   spotDistance: 20
+  chasing: 0
   disarmedMaterial: {fileID: 2100000, guid: ed511fcefe8ddaf4ba3c02993edd8773, type: 2}
   layer:
     serializedVersion: 2
@@ -131,4 +133,17 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &6178734390916910506
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2281822466427786055}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}

@@ -4710,7 +4710,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: spotDistance
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786055, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: m_Name
@@ -5580,7 +5580,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: spotDistance
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786055, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: m_Name
@@ -5641,7 +5641,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: spotDistance
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786055, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: m_Name

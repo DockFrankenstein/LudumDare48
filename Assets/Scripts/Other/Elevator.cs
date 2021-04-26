@@ -39,6 +39,7 @@ public class Elevator : MonoBehaviour
     public void OnInElevator(Collider collider)
     {
         if (!isEnd || isUsed) return;
+        if (collider.gameObject.tag != "Player") return;
         isUsed = true;
         anim?.SetTrigger(DoorCloseTriggerName);
         StartCoroutine(InvokeActionAfterDelay(LoadScene, SceneLoadDelay));

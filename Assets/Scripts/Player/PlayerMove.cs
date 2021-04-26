@@ -3,7 +3,7 @@ using qASIC.InputManagement;
 
 public class PlayerMove : MonoBehaviour
 {
-    CharacterController charControl;
+    [HideInInspector] public CharacterController charControl;
     float velocity;
 
     [Header("Gravity")]

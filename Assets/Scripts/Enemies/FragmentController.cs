@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Particle : MonoBehaviour
+public class FragmentController : MonoBehaviour
 {
     Transform playerTransform;
     Rigidbody rb;
@@ -10,7 +10,7 @@ public class Particle : MonoBehaviour
     public float maxVelocityMagnitude;
     public float spotDistance;
     bool playerSpotted;
-    bool chasing;
+    public bool chasing;
     public Material disarmedMaterial;
     public LayerMask layer;
 
@@ -40,6 +40,7 @@ public class Particle : MonoBehaviour
     }
     public void SpotPlayer()
     {
+        if (playerSpotted) return;
         rb.velocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)); 
         playerSpotted = chasing = true;
     }
