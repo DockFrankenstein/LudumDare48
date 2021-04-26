@@ -35,22 +35,18 @@ public class EndTrigger : MonoBehaviour
         float animDuration = 3.0f;
         AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, animDuration, 1);
 
+        AudioData clip;
+        clip = PointCounter.GetMaximumPoints() == PointCounter.GetPoints() 
+            ? announcerGood : announcerBad;
+
+        AudioManager.Play("announcer", announcerBad);
+        yield return new WaitForSecondsRealtime(announcerBad.clip.length);
+        
         for(float t = 0; t < animDuration; t += 0.01f)
         {
             player.position = Vector3.Lerp(startPosition, endPosition, curve.Evaluate(t));    
             player.rotation = Quaternion.Lerp(startRotation, endRotation, curve.Evaluate(t));
             yield return new WaitForSeconds(0.01f);
-        }
-
-        if (PointCounter.GetMaximumPoints() == PointCounter.GetPoints())
-        {
-            AudioManager.Play("announcer", announcerGood);
-            yield return new WaitForSecondsRealtime(announcerGood.clip.length);
-        }
-        else
-        {
-            AudioManager.Play("announcer", announcerBad);
-            yield return new WaitForSecondsRealtime(announcerBad.clip.length);
         }
 
         ScreenBlanker.BlackOutScreen(() => SceneManager.LoadScene("Menu"));
