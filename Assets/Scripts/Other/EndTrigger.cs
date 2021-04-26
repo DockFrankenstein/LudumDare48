@@ -39,8 +39,7 @@ public class EndTrigger : MonoBehaviour
         clip = PointCounter.GetMaximumPoints() == PointCounter.GetPoints() 
             ? announcerGood : announcerBad;
 
-        AudioManager.Play("announcer", clip);
-        yield return new WaitForSecondsRealtime(clip.clip.length);
+        AudioManager.Play("announcer", announcerBad);
         
         for(float t = 0; t < animDuration; t += 0.01f)
         {
@@ -49,6 +48,7 @@ public class EndTrigger : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
+        yield return new WaitForSecondsRealtime(announcerBad.clip.length);
         ScreenBlanker.BlackOutScreen(() => SceneManager.LoadScene("Menu"));
     }
 
