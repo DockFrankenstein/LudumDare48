@@ -43,7 +43,7 @@ namespace Menu.Options
         public void OnClick()
         {
             currentIndex++;
-            if (currentIndex + 1 >= properties.Count) currentIndex = 0;
+            if (currentIndex >= properties.Count) currentIndex = 0;
             SetValue(properties[currentIndex]);
         }    
     }

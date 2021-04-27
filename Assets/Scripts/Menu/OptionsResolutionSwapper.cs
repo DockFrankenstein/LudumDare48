@@ -14,9 +14,16 @@ namespace Menu.Options
             for (int i = 0; i < resolutions.Length; i++)
             {
                 Vector2Int res = new Vector2Int(resolutions[i].width, resolutions[i].height);
+                Debug.Log(res);
                 if (resolutionList.Contains(res)) continue;
                 resolutionList.Add(res);
             }
+
+            for (int i = 0; i < resolutionList.Count; i++)
+            {
+                Debug.Log(resolutionList[i]);
+            }
+
             properties = resolutionList;
         }
 
