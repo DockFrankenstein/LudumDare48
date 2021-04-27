@@ -39,7 +39,7 @@ public class EndTrigger : MonoBehaviour
         clip = PointCounter.GetMaximumPoints() == PointCounter.GetPoints() 
             ? announcerGood : announcerBad;
 
-        AudioManager.Play("announcer", announcerBad);
+        AudioManager.Play("announcer", clip);
         
         for(float t = 0; t < animDuration; t += 0.01f)
         {
