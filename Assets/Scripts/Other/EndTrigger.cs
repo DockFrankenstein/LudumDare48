@@ -48,7 +48,7 @@ public class EndTrigger : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-        yield return new WaitForSecondsRealtime(announcerBad.clip.length);
+        yield return new WaitForSecondsRealtime(clip.clip.length);
         ScreenBlanker.BlackOutScreen(() => SceneManager.LoadScene("Menu"));
     }
 
