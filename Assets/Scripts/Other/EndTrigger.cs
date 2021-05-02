@@ -1,11 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
+using qASIC;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using qASIC.AudioManagment;
 
 public class EndTrigger : MonoBehaviour
 {
+    public float EndingTolerance;
+
     public Transform endPosition;
     public Transform endRotationDir;
 
@@ -28,6 +30,7 @@ public class EndTrigger : MonoBehaviour
 
     IEnumerator AnimateEnding(Vector3 endPosition, Quaternion endRotation)
     {
+
         Transform player = PlayerReference.singleton.transform;
         Vector3 startPosition = player.position;
         Quaternion startRotation = player.rotation;
@@ -35,17 +38,17 @@ public class EndTrigger : MonoBehaviour
         float animDuration = 3.0f;
         AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, animDuration, 1);
 
-        AudioData clip;
-        clip = PointCounter.GetMaximumPoints() == PointCounter.GetPoints() 
-            ? announcerGood : announcerBad;
+        bool isGood = PointCounter.GetMaxPoints() == 0 || PointCounter.GetPoints() / PointCounter.GetMaxPoints() >= EndingTolerance;
+        qDebug.Log($"Ending triggered. Collected {PointCounter.GetPoints()}/{PointCounter.GetMaxPoints()}. Playing ending {(isGood ? "good" : "bad")}", "trigger");
+        AudioData clip = isGood ? announcerGood : announcerBad;
 
         AudioManager.Play("announcer", clip);
         
-        for(float t = 0; t < animDuration; t += 0.01f)
+        for(float t = 0; t < animDuration; t += Time.deltaTime)
         {
             player.position = Vector3.Lerp(startPosition, endPosition, curve.Evaluate(t));    
             player.rotation = Quaternion.Lerp(startRotation, endRotation, curve.Evaluate(t));
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
 
         yield return new WaitForSecondsRealtime(clip.clip.length - animDuration);

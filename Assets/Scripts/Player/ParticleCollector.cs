@@ -10,7 +10,7 @@ public class ParticleCollector : MonoBehaviour
             FragmentController particle = other.gameObject.GetComponent<FragmentController>();
             if (particle == null || particle.chasing) return;
             Destroy(other.gameObject);
-            PointCounter.ScorePoint();
+            PointCounter.AddPoint();
         }
     }
 }

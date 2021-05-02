@@ -20,7 +20,7 @@ public class FragmentController : MonoBehaviour
     {
         playerTransform = PlayerReference.singleton.transform;
         rb = GetComponent<Rigidbody>();
-        PointCounter.IncrementMaxPoints();
+        PointCounter.AddMaxPoint();
     }
     private void FixedUpdate()
     {

@@ -43,6 +43,7 @@ public class Elevator : MonoBehaviour
         isUsed = true;
         anim?.SetTrigger(DoorCloseTriggerName);
         StartCoroutine(InvokeActionAfterDelay(LoadScene, SceneLoadDelay));
+        qDebug.Log($"Elevator triggered. Finishing level with {PointCounter.GetPoints()}/{PointCounter.GetMaxPoints()} collected", "trigger");
     }
 
     public void LoadScene()

@@ -36,5 +36,7 @@ MonoBehaviour:
     color: {r: 0.5019608, g: 0.8, b: 0.101960786, a: 1}
   - colorName: cheat
     color: {r: 0, g: 0.8509804, b: 0.35686275, a: 1}
-  - colorName: Player
+  - colorName: player
     color: {r: 0, g: 0.49803922, b: 0, a: 1}
+  - colorName: trigger
+    color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}

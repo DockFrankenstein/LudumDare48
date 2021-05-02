@@ -1,37 +1,57 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class PointCounter : MonoBehaviour
 {
-    public static PointCounter instance;
-    
-    int maxPoints;
-    int points;
+    public class LevelPointData
+    {
+        public int maxPoints = 0;
+        public int collectedPoints = 0;
+    }
 
-    void Start()
+    public static Dictionary<int, LevelPointData> PointData = new Dictionary<int, LevelPointData>();
+
+    private void Awake()
     {
-        if (instance == null)
+        Initialize();      
+    }
+
+    private void Initialize()
+    {
+        int sceneID = SceneManager.GetActiveScene().buildIndex;
+        if (!PointData.ContainsKey(sceneID))
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            PointData.Add(sceneID, new LevelPointData());
+            return;
         }
-        else
-            Destroy(gameObject);
+        PointData[sceneID] = new LevelPointData();
     }
-    public static void IncrementMaxPoints()
+
+    public static void AddMaxPoint() => PointData[GetCurrentPointDataID()].maxPoints++;
+    public static void AddPoint() => PointData[GetCurrentPointDataID()].collectedPoints++;
+
+    private static int GetCurrentPointDataID()
     {
-        instance.maxPoints++;
+        int sceneID = SceneManager.GetActiveScene().buildIndex;
+        if (!PointData.ContainsKey(sceneID))
+            PointData.Add(sceneID, new LevelPointData());
+        return sceneID;
     }
-    public static void ScorePoint()
+
+    public static int GetMaxPoints()
     {
-        instance.points++;
+        int points = 0;
+        foreach (var levelData in PointData)
+            points += levelData.Value.maxPoints;
+        return points;
     }
-    public static int GetMaximumPoints()
-    {
-        return instance.maxPoints;
-    }
+
     public static int GetPoints()
     {
-        return instance.points;
+        int points = 0;
+        foreach (var levelData in PointData)
+            points += levelData.Value.collectedPoints;
+        return points;
     }
 }
