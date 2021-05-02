@@ -20,7 +20,7 @@ namespace qASIC.InputManagement
         }
         #endregion
 
-        private static InputManagerKeys _global = new InputManagerKeys();
+        private static InputManagerKeys _global;
         public static InputManagerKeys GlobalKeys
         {
             get 
@@ -30,8 +30,7 @@ namespace qASIC.InputManagement
             }
             set
             {
-                _global.SavePath = value.SavePath;
-                _global.Presets = new Dictionary<string, KeyCode>(value.Presets);
+                _global = new InputManagerKeys(value);
             }
         }
 
@@ -39,7 +38,7 @@ namespace qASIC.InputManagement
         {
             string path = $"{Application.persistentDataPath}/{GlobalKeys.SavePath}";
             foreach (var entry in GlobalKeys.Presets)
-                FileManagement.ConfigController.SetSettingFromFile(path, entry.Key, entry.Value.ToString());
+                FileManagement.ConfigController.SetSetting(path, entry.Key, entry.Value.ToString());
         }
 
         public static void LoadUserKeys()

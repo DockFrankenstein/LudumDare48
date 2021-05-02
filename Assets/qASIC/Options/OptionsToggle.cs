@@ -13,7 +13,7 @@ namespace qASIC.Options.Menu
 
         public void SetValue(bool state) 
         { 
-            SetValue(state, true);
+            SetValue(state, true); 
             OnValueChange.Invoke(state != InvertEvent); 
         }
 
