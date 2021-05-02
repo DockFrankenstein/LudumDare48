@@ -27,6 +27,9 @@ public class PlayerMove : MonoBehaviour
 
     public static bool Active = true;
 
+    [Header("Debug")]
+    public bool debug;
+
     private void Awake()
     {
         charControl = GetComponent<CharacterController>();
@@ -34,7 +37,9 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        //if (!Active) return;
+        if(debug) qASIC.Displayer.InfoDisplayer.DisplayValue("player velocity", velocity.ToString(), "debug");
+
+        if (!Active) return;
         float x = InputManager.GetAxis("WalkRight", "WalkLeft");
         float z = InputManager.GetAxis("WalkUp", "WalkDown");
         running = InputManager.GetInput("Sprint");
@@ -45,7 +50,7 @@ public class PlayerMove : MonoBehaviour
         path.y = velocity;
 
         path *= Time.deltaTime;
-        path += platformDetection.platformMove;
+        charControl.Move(platformDetection.platformMove);
         charControl.Move(path);
     }
 
@@ -60,12 +65,12 @@ public class PlayerMove : MonoBehaviour
                 break;
             default:
                 bool lastGround = isGround;
-                isGround = Physics.CheckBox(GroundPoint.position, CheckRadious, Quaternion.Euler(0f, 0f, 0f), GroundLayer);
+                isGround = Physics.CheckBox(GroundPoint.position, CheckRadious, Quaternion.Euler(0f, 0f, 0f), GroundLayer) || platformDetection.isPlatform;
 
                 if (!lastGround && isGround) PlayerReference.singleton?.damage?.HandleVelocity(velocity);
 
                 velocity -= Gravity * Time.deltaTime;
-                if (isGround) velocity = -GroundVelocity;
+                if (isGround) velocity = platformDetection.isPlatform ? 0f : -GroundVelocity;
                 if (isGround && InputManager.GetInput("Jump")) velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity);
                 break;
         }

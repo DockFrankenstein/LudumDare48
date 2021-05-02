@@ -5,6 +5,7 @@ public static class CursorManager
 {
     private static Dictionary<string, bool> states = new Dictionary<string, bool>();
 
+    /// <summary>true is locked, false is none</summary>
     public static bool GlobalState { get; private set; }
 
     public static void ChangeState(string stateName, bool state)

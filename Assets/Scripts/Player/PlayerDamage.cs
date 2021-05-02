@@ -32,9 +32,8 @@ public class PlayerDamage : MonoBehaviour
             return;
         }
 
-        PlayerReference.singleton.move.enabled = false;
-        PlayerReference.singleton.look.enabled = false;
-        PlayerReference.singleton.move.charControl.enabled = false;
+        PlayerLook.Active = false;
+        PlayerMove.Active = false;
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
 
         rb.angularVelocity = new Vector3(Random.Range(0, maxDrag.x), Random.Range(0, maxDrag.y), Random.Range(0, maxDrag.z));
