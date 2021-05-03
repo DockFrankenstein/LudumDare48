@@ -26,11 +26,6 @@ public class FragmentController : MonoBehaviour
 
     public LayerMask layer;
 
-    private void Update()
-    {
-        qASIC.Displayer.InfoDisplayer.DisplayValue("path Index", pathIndex.ToString(), "debug");
-    }
-
     private void Awake()
     {
         playerInCollider = trigger == null;
@@ -97,8 +92,6 @@ public class FragmentController : MonoBehaviour
 
     Vector3 GetTarget()
     {
-        qASIC.Displayer.InfoDisplayer.DisplayValue("is hitting player", raycast().ToString(), "debug");
-        qASIC.Displayer.InfoDisplayer.DisplayValue("is out of paths", (pathIndex >= path.Length).ToString(), "debug");
         if (raycast() || pathIndex >= path.Length) return playerTransform.position;
         for (; pathIndex < path.Length; pathIndex++)
         {
