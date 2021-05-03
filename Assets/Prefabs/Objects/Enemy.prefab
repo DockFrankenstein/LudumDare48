@@ -9983,6 +9983,7 @@ MonoBehaviour:
   trigger: {fileID: 0}
   path: []
   minPathSwitchDistance: 0.25
+  raycastRadious: 0.3
   OnDischarge:
     m_PersistentCalls:
       m_Calls:

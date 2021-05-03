@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Gravity")]
     public Transform GroundPoint;
-    public Vector3 CheckRadious = Vector3.one;
+    public float CheckRadious = 0.5f;
 
     public static bool noclip;
 
@@ -38,14 +38,19 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if(debug) qASIC.Displayer.InfoDisplayer.DisplayValue("player velocity", velocity.ToString(), "debug");
+        if (debug) qASIC.Displayer.InfoDisplayer.DisplayValue("player velocity", velocity.ToString(), "debug");
 
         if (!Active) return;
-        float x = InputManager.GetAxis("WalkRight", "WalkLeft");
-        float z = InputManager.GetAxis("WalkUp", "WalkDown");
-        running = InputManager.GetInput("Sprint");
-        Vector3 path = (transform.right * x + transform.forward * z).normalized * (running ? RunSpeed : Speed);
-        walking = path == Vector3.zero;
+        Vector3 path = new Vector3();
+
+        if (CursorManager.GlobalState)
+        {
+            float x = InputManager.GetAxis("WalkRight", "WalkLeft");
+            float z = InputManager.GetAxis("WalkUp", "WalkDown");
+            running = InputManager.GetInput("Sprint");
+            path = (transform.right * x + transform.forward * z).normalized * (running ? RunSpeed : Speed);
+            walking = path == Vector3.zero;
+        }
 
         CalculateGravity();
         path.y = velocity;
@@ -61,18 +66,18 @@ public class PlayerMove : MonoBehaviour
         {
             case true:
                 velocity = 0f;
-                if(InputManager.GetInput("Jump")) velocity += Mathf.Sqrt(JumpHeight * 2f * Gravity);
+                if(InputManager.GetInput("Jump") && CursorManager.GlobalState) velocity += Mathf.Sqrt(JumpHeight * 2f * Gravity);
                 if(Input.GetKey(KeyCode.LeftControl)) velocity -= Mathf.Sqrt(JumpHeight * 2f * Gravity);
                 break;
             default:
                 bool lastGround = isGround;
-                isGround = Physics.CheckBox(GroundPoint.position, CheckRadious, Quaternion.Euler(0f, 0f, 0f), GroundLayer) || platformDetection.isPlatform;
+                isGround = Physics.CheckSphere(GroundPoint.position, CheckRadious, GroundLayer) || platformDetection.isPlatform;
 
                 if (!lastGround && isGround) PlayerReference.singleton?.damage?.HandleVelocity(velocity);
 
                 velocity -= Gravity * Time.deltaTime;
                 if (isGround) velocity = platformDetection.isPlatform ? 0f : -GroundVelocity;
-                if (isGround && InputManager.GetInput("Jump")) velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity);
+                if (isGround && InputManager.GetInput("Jump") && CursorManager.GlobalState) velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity);
                 break;
         }
     }

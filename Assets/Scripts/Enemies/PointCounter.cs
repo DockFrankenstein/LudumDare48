@@ -17,6 +17,11 @@ public class PointCounter : MonoBehaviour
         Initialize();      
     }
 
+    public static void ResetScore()
+    {
+        PointData.Clear();
+    }
+
     private void Initialize()
     {
         int sceneID = SceneManager.GetActiveScene().buildIndex;

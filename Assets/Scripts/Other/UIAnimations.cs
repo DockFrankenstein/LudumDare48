@@ -18,7 +18,7 @@ public static class UIAnimations
             yield return new WaitForSeconds(delay);
 
         float animationLength = GetAnimationLength(animationCurve);
-        for(float time = 0; time <= animationLength; time += Time.deltaTime)
+        for(float time = 0; time <= animationLength; time += Time.unscaledDeltaTime)
         {
             graphic.color = Color.Lerp(startColor, destinationColor, animationCurve.Evaluate(time));
             yield return new WaitForEndOfFrame();

@@ -19,6 +19,7 @@ public class FragmentController : MonoBehaviour
     public TriggerController trigger;
     public Vector3[] path;
     public float minPathSwitchDistance;
+    public float raycastRadious;
     int pathIndex;
     bool playerInCollider;
 
@@ -122,7 +123,7 @@ public class FragmentController : MonoBehaviour
         for (; pathIndex < path.Length; pathIndex++)
         {
             Vector3 pathWorldPosition = startPosition + path[pathIndex];
-            Physics.Raycast(new Ray(transform.position, path[pathIndex]), float.MaxValue, layer);
+            Physics.SphereCast(new Ray(transform.position, path[pathIndex]), raycastRadious, float.MaxValue, layer);
             Debug.DrawLine(transform.position, pathWorldPosition, Color.red);
 
             if (Vector3.Distance(transform.position, pathWorldPosition) >= minPathSwitchDistance)

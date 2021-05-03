@@ -20,6 +20,7 @@ namespace Electricity
 
         private void FixedUpdate()
         {
+            if (!CursorManager.GlobalState) return;
             if (Physics.Raycast(CastPoint.position, CastPoint.TransformDirection(Vector3.forward), out RaycastHit hit, Range, DetectionMask))
             {
                 Debug.DrawRay(CastPoint.position, CastPoint.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
@@ -49,6 +50,7 @@ namespace Electricity
 
         private void Update()
         {
+            if (!CursorManager.GlobalState) return;
             if (Input.GetMouseButtonUp(0)) waitForUp = false;
             if (waitForUp) return;
 
@@ -70,7 +72,7 @@ namespace Electricity
         {
             if (!Active) return false;
             Debug.DrawLine(Line.transform.position, currentPoint.transform.position, Color.red);
-            bool hits = Physics.Linecast(Line.transform.position, currentPoint.transform.position, OutOfRangeMask);
+            bool hits = Physics.Linecast(CastPoint.position, currentPoint.transform.position, OutOfRangeMask);
 
             bool isInRange = Vector3.Distance(currentPoint.transform.position, CastPoint.position) <= Range;
 

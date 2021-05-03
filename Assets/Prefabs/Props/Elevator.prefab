@@ -296,9 +296,9 @@ MonoBehaviour:
   isEnd: 0
   sceneName: 
   DoorCloseTriggerName: close
-  SceneLoadDelay: 5
+  SceneLoadDelay: 1
   DoorOpenTriggerName: open
-  DoorOpenDelay: 3
+  DoorOpenDelay: 0.5
 --- !u!1 &5592436456153890980
 GameObject:
   m_ObjectHideFlags: 0
