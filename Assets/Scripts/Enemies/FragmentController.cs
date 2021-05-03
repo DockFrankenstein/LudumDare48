@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class FragmentController : MonoBehaviour
 {
+    public static int AILevel = 2;
+    public static bool showDebugValues = false;
+
     public enum FragmentState { idle, chasing, discharged };
     public FragmentState state = FragmentState.idle;
 
@@ -19,12 +22,28 @@ public class FragmentController : MonoBehaviour
     int pathIndex;
     bool playerInCollider;
 
+    bool usingPaths;
+
     Vector3 startPosition;
     Vector3 target;
 
     public UnityEngine.Events.UnityEvent OnDischarge = new UnityEngine.Events.UnityEvent();
 
     public LayerMask layer;
+
+    [Header("Debug")]
+    public TMPro.TextMeshPro debugText;
+
+    private void Update()
+    {
+        if (debugText == null) return;
+        if (showDebugValues != debugText.gameObject.activeSelf) debugText.gameObject.SetActive(showDebugValues);
+        if (!showDebugValues) return;
+
+        debugText.text = $"Current state: {state}\n" +
+            $"Target: {(usingPaths ? $"path {pathIndex}" : "Player")}\n" +
+            $"Distance: {Vector3.Distance(transform.position, target)}";
+    }
 
     private void Awake()
     {
@@ -49,6 +68,8 @@ public class FragmentController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (AILevel == 0) return;
+
         if (state == FragmentState.chasing)
             UpdatePosition();
         else if (state == FragmentState.idle && checkTriggered())
@@ -92,14 +113,23 @@ public class FragmentController : MonoBehaviour
 
     Vector3 GetTarget()
     {
-        if (raycast() || pathIndex >= path.Length) return playerTransform.position;
+        if (raycast() || pathIndex >= path.Length || AILevel == 1)
+        {
+            usingPaths = false;
+            return playerTransform.position;
+        }
+
         for (; pathIndex < path.Length; pathIndex++)
         {
             Vector3 pathWorldPosition = startPosition + path[pathIndex];
             Physics.Raycast(new Ray(transform.position, path[pathIndex]), float.MaxValue, layer);
             Debug.DrawLine(transform.position, pathWorldPosition, Color.red);
+
             if (Vector3.Distance(transform.position, pathWorldPosition) >= minPathSwitchDistance)
+            {
+                usingPaths = true;
                 return pathWorldPosition;
+            }
         }
         return playerTransform.position;
     }
@@ -110,7 +140,7 @@ public class FragmentController : MonoBehaviour
 
         if (col.gameObject.layer == 7)
         {
-            PlayerReference.singleton.damage.Kill();
+            if (AILevel != 0) PlayerReference.singleton.damage.Kill();
             Destroy(gameObject);
             return;
         }
