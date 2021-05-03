@@ -367,7 +367,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: spotDistance
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786055, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: m_Name
@@ -379,7 +379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786106, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786106, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: m_LocalPosition.y

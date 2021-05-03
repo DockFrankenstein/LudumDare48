@@ -876,6 +876,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
+      propertyPath: maxVelocityMagnitude
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
+      propertyPath: velocityMultiplayer.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786055, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -3713,6 +3721,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
+      propertyPath: maxVelocityMagnitude
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
+      propertyPath: velocityMultiplayer.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786055, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: m_Name
       value: Enemy_1
@@ -3986,8 +4002,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1251786252565202575, guid: 327113ac0d2c1ee4e80b581798776910, type: 3}
+      propertyPath: loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251786252565202575, guid: 327113ac0d2c1ee4e80b581798776910, type: 3}
       propertyPath: speed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1251786252565202575, guid: 327113ac0d2c1ee4e80b581798776910, type: 3}
       propertyPath: ActivatedPosition.y
