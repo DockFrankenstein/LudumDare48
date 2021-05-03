@@ -1,5 +1,4 @@
 using UnityEngine;
-using qASIC;
 
 public class EnemyActivationTrigger : MonoBehaviour
 {

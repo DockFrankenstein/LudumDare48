@@ -7,6 +7,8 @@ namespace Menu.Options
 {
     public class OptionsResolutionSwapper : OptionsMenuSwapper
     {
+        object newValue;
+
         public override void Assign()
         {
             Resolution[] resolutions = Screen.resolutions;
@@ -22,7 +24,7 @@ namespace Menu.Options
         }
 
         public override void SetValue(object propertie) =>
-            base.SetValue(VectorStringConvertion.Vector2IntToString((Vector2Int)propertie));
+            newValue = VectorStringConvertion.Vector2IntToString((Vector2Int)propertie);
 
         public override void SetCurrentIndex()
         {
@@ -46,5 +48,7 @@ namespace Menu.Options
             if (index < 0) return;
             SetIndexSilent(index);
         }
+
+        public void Apply() => base.SetValue(newValue);
     }
 }
