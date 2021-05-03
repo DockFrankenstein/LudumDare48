@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class ParticleCollector : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class ParticleCollector : MonoBehaviour
         if (other.gameObject.layer == 10)
         {
             FragmentController particle = other.gameObject.GetComponent<FragmentController>();
-            if (particle == null || particle.chasing) return;
+            if (particle == null || !particle.state.Equals(FragmentController.FragmentState.discharged)) return;
             Destroy(other.gameObject);
             PointCounter.AddPoint();
         }

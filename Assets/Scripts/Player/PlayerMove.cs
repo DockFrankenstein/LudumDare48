@@ -33,6 +33,7 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         charControl = GetComponent<CharacterController>();
+        Active = true;
     }
 
     private void Update()

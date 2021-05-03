@@ -20,6 +20,7 @@ public class PlayerLook : MonoBehaviour
     private void Awake()
     {
         CursorManager.ChangeState("global", true);
+        Active = true;
 
         if (Axis == null)
         {

@@ -1,70 +1,146 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FragmentController : MonoBehaviour
 {
+    public enum FragmentState { idle, chasing, discharged };
+    public FragmentState state = FragmentState.idle;
+
     Transform playerTransform;
     Rigidbody rb;
     public float chaseForceMagnitude;
     public float maxVelocityMagnitude;
     public float spotDistance;
-    bool playerSpotted;
-    public bool chasing;
+
+    [Space]
+    public Vector3 velocityMultiplayer = Vector3.one;
+    public TriggerController trigger;
+    public Vector3[] path;
+    public float minPathSwitchDistance;
+    int pathIndex;
+    bool playerInCollider;
+
+    Vector3 startPosition;
+    Vector3 target;
 
     public UnityEngine.Events.UnityEvent OnDischarge = new UnityEngine.Events.UnityEvent();
 
     public LayerMask layer;
+
+    private void Update()
+    {
+        qASIC.Displayer.InfoDisplayer.DisplayValue("path Index", pathIndex.ToString(), "debug");
+    }
+
+    private void Awake()
+    {
+        playerInCollider = trigger == null;
+        trigger?.ColliderEnter.AddListener((Collider collider) => HandleCollider(collider, true));
+        trigger?.ColliderExit.AddListener((Collider collider) => HandleCollider(collider, false));
+    }
+
+    void HandleCollider(Collider collider, bool state)
+    {
+        if (collider.tag != "Player") return;
+        playerInCollider = state;
+    }
 
     void Start()
     {
         playerTransform = PlayerReference.singleton.transform;
         rb = GetComponent<Rigidbody>();
         PointCounter.AddMaxPoint();
+        startPosition = transform.position;
     }
+
     private void FixedUpdate()
     {
-        if (playerSpotted && chasing)
+        if (state == FragmentState.chasing)
             UpdatePosition();
-        else if (!playerSpotted && IsTriggered())
+        else if (state == FragmentState.idle && checkTriggered())
             SpotPlayer();
     }
-    bool IsTriggered()
+
+    bool checkTriggered()
     {
         Vector3 distanceVector = playerTransform.position - transform.position;
-        Physics.Raycast(
-            new Ray(transform.position, distanceVector.normalized), 
-            out RaycastHit hit, 
-            spotDistance,
-            layer);
+        bool hits = raycast();
 
-        return distanceVector.magnitude <= spotDistance && (
-            hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"));
+        return hits && distanceVector.magnitude <= spotDistance && playerInCollider;
     }
+
+    bool raycast()
+    {
+        Vector3 distanceVector = playerTransform.position - transform.position;
+        bool hits = Physics.Raycast(new Ray(transform.position, distanceVector.normalized), out RaycastHit hit, spotDistance, layer);
+        return hits && hit.transform.CompareTag("Player");
+    }
+
     public void SpotPlayer()
     {
-        if (playerSpotted) return;
-        rb.velocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)); 
-        playerSpotted = chasing = true;
+        if (state == FragmentState.chasing) return;
+        rb.velocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+        state = FragmentState.chasing;
     }
+
     void UpdatePosition()
     {
-        Vector3 force = chaseForceMagnitude * (playerTransform.position - transform.position).normalized;
+        target = GetTarget();
+
+        Vector3 force = chaseForceMagnitude * (target - transform.position).normalized;
+        force.x *= velocityMultiplayer.x;
+        force.y *= velocityMultiplayer.y;
+        force.z *= velocityMultiplayer.z;
+
         rb.velocity += force * Time.deltaTime;
         rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, maxVelocityMagnitude);
     }
+
+    Vector3 GetTarget()
+    {
+        qASIC.Displayer.InfoDisplayer.DisplayValue("is hitting player", raycast().ToString(), "debug");
+        qASIC.Displayer.InfoDisplayer.DisplayValue("is out of paths", (pathIndex >= path.Length).ToString(), "debug");
+        if (raycast() || pathIndex >= path.Length) return playerTransform.position;
+        for (; pathIndex < path.Length; pathIndex++)
+        {
+            Vector3 pathWorldPosition = startPosition + path[pathIndex];
+            Physics.Raycast(new Ray(transform.position, path[pathIndex]), float.MaxValue, layer);
+            Debug.DrawLine(transform.position, pathWorldPosition, Color.red);
+            if (Vector3.Distance(transform.position, pathWorldPosition) >= minPathSwitchDistance)
+                return pathWorldPosition;
+        }
+        return playerTransform.position;
+    }
+
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 7 && chasing)
+        if (state != FragmentState.chasing) return;
+
+        if (col.gameObject.layer == 7)
         {
             PlayerReference.singleton.damage.Kill();
             Destroy(gameObject);
+            return;
         }
-        else if (chasing)
+
+        state = FragmentState.discharged;
+        OnDischarge.Invoke();
+        rb.useGravity = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(target, 1f);
+    }
+
+    [ExecuteInEditMode]
+    private void OnDrawGizmosSelected()
+    {
+        if (!Application.isEditor) return;
+        for (int i = 0; i < path.Length; i++)
         {
-            chasing = false;
-            OnDischarge.Invoke();
-            rb.useGravity = true;
+            Gizmos.color = i == pathIndex ? Color.red : Color.blue;
+            Gizmos.DrawSphere((Application.isPlaying ? startPosition : transform.position) + path[i], minPathSwitchDistance);
         }
     }
 }

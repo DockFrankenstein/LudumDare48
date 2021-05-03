@@ -9974,10 +9974,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a64cddc4607939468419b2a27812456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   chaseForceMagnitude: 256
   maxVelocityMagnitude: 15
   spotDistance: 20
-  chasing: 0
+  velocityMultiplayer: {x: 1, y: 1, z: 1}
+  trigger: {fileID: 0}
+  path: []
+  minPathSwitchDistance: 1
   OnDischarge:
     m_PersistentCalls:
       m_Calls:
