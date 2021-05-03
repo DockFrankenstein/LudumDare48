@@ -94,7 +94,7 @@ public class FragmentController : MonoBehaviour
 
     public void SpotPlayer()
     {
-        if (state == FragmentState.chasing) return;
+        if (state != FragmentState.idle) return;
         rb.velocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
         state = FragmentState.chasing;
     }
