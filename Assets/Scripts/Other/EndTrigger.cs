@@ -38,7 +38,7 @@ public class EndTrigger : MonoBehaviour
         float animDuration = 3.0f;
         AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, animDuration, 1);
 
-        bool isGood = PointCounter.GetMaxPoints() == 0 || PointCounter.GetPoints() / PointCounter.GetMaxPoints() >= EndingTolerance;
+        bool isGood = PointCounter.GetMaxPoints() == 0 || PointCounter.GetPoints() / (float)PointCounter.GetMaxPoints() >= EndingTolerance;
         qDebug.Log($"Ending triggered. Collected {PointCounter.GetPoints()}/{PointCounter.GetMaxPoints()}. Playing ending {(isGood ? "good" : "bad")}", "trigger");
         AudioData clip = isGood ? announcerGood : announcerBad;
 
