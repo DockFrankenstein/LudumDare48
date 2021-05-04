@@ -3,6 +3,8 @@ using qASIC;
 
 public class PlayerReference : MonoBehaviour
 {
+    public static bool interactable = true;
+
     public static PlayerReference singleton;
 
     public PlayerMove move;

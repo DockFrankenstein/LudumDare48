@@ -21,21 +21,22 @@ namespace Electricity
         private void FixedUpdate()
         {
             if (!CursorManager.GlobalState) return;
-            if (Physics.Raycast(CastPoint.position, CastPoint.TransformDirection(Vector3.forward), out RaycastHit hit, Range, DetectionMask))
-            {
-                Debug.DrawRay(CastPoint.position, CastPoint.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                if (((1 << hit.transform.gameObject.layer) & PointMask) == 0 || Active)
-                {
-                    RemovePoint();
-                    return;
-                }
+            bool hits = Physics.Raycast(CastPoint.position, CastPoint.TransformDirection(Vector3.forward), out RaycastHit hit, Range, DetectionMask);
+            Debug.DrawRay(CastPoint.position, CastPoint.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
 
-                currentPoint = hit.transform.GetComponent<ActivationPoint>();
-                currentPoint?.Select(true);
+            if (!hits || !PlayerReference.interactable)
+            {
+                RemovePoint();
                 return;
             }
-            Debug.DrawRay(CastPoint.position, CastPoint.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            RemovePoint();
+            if (((1 << hit.transform.gameObject.layer) & PointMask) == 0 || Active)
+            {
+                RemovePoint();
+                return;
+            }
+
+            currentPoint = hit.transform.GetComponent<ActivationPoint>();
+            currentPoint?.Select(true);
         }
 
         void RemovePoint()
@@ -50,10 +51,11 @@ namespace Electricity
 
         private void Update()
         {
-            if (Input.GetMouseButtonUp(0)) waitForUp = false;
+            if (Input.GetMouseButtonUp(0) || !PlayerReference.interactable) waitForUp = false;
             if (waitForUp) return;
 
-            Active = Input.GetMouseButton(0) && currentPoint != null && !PlayerReference.singleton.damage.isDead && CursorManager.GlobalState;
+            Active = Input.GetMouseButton(0) && currentPoint != null && !PlayerReference.singleton.damage.isDead && 
+                CursorManager.GlobalState && PlayerReference.interactable;
 
             if (!IsStillInRange())
                 Active = false;

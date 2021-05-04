@@ -3,6 +3,8 @@ using qASIC.InputManagement;
 
 public class PlayerMove : MonoBehaviour
 {
+    public static float speedMultiplier = 1f;
+
     [HideInInspector] public CharacterController charControl;
     float velocity;
 
@@ -48,7 +50,7 @@ public class PlayerMove : MonoBehaviour
             float x = InputManager.GetAxis("WalkRight", "WalkLeft");
             float z = InputManager.GetAxis("WalkUp", "WalkDown");
             running = InputManager.GetInput("Sprint");
-            path = (transform.right * x + transform.forward * z).normalized * (running ? RunSpeed : Speed);
+            path = (transform.right * x + transform.forward * z).normalized * (running ? RunSpeed : Speed) * speedMultiplier;
             walking = path == Vector3.zero;
         }
 
@@ -66,8 +68,8 @@ public class PlayerMove : MonoBehaviour
         {
             case true:
                 velocity = 0f;
-                if(InputManager.GetInput("Jump") && CursorManager.GlobalState) velocity += Mathf.Sqrt(JumpHeight * 2f * Gravity);
-                if(Input.GetKey(KeyCode.LeftControl)) velocity -= Mathf.Sqrt(JumpHeight * 2f * Gravity);
+                if(InputManager.GetInput("Jump") && CursorManager.GlobalState) velocity += speedMultiplier * Speed;
+                if(Input.GetKey(KeyCode.LeftControl)) velocity -= speedMultiplier * Speed;
                 break;
             default:
                 bool lastGround = isGround;
