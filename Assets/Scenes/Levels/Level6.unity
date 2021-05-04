@@ -3131,10 +3131,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1675069919787233985, guid: fb657d512bc7acc49b89f0164cf2eedc, type: 3}
-      propertyPath: reciveFallDamage
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5580952709643226073, guid: fb657d512bc7acc49b89f0164cf2eedc, type: 3}
       propertyPath: m_Name
       value: Player

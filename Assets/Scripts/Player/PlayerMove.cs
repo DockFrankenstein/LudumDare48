@@ -76,7 +76,8 @@ public class PlayerMove : MonoBehaviour
                 if (!lastGround && isGround) PlayerReference.singleton?.damage?.HandleVelocity(velocity);
 
                 velocity -= Gravity * Time.deltaTime;
-                if (isGround) velocity = platformDetection.isPlatform ? 0f : -GroundVelocity;
+                if (isGround && charControl.isGrounded) velocity = -GroundVelocity;
+                if (isGround && platformDetection.isPlatform) velocity = 0f;
                 if (isGround && InputManager.GetInput("Jump") && CursorManager.GlobalState) velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity);
                 break;
         }

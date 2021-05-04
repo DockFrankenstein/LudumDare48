@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityDamageThreshold: 20
-  reciveFallDamage: 1
+  reciveFallDamage: 0
   isDead: 0
   maxDrag: {x: 3, y: 1, z: 3}
 --- !u!114 &1420740235152670267

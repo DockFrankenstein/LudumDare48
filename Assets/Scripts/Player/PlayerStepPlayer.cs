@@ -23,7 +23,7 @@ public class PlayerStepPlayer : MonoBehaviour
 
     bool CanPlay()
     {
-        if (PlayerReference.singleton?.move == null || PlayerReference.singleton?.damage == null) return false;
+        if (PlayerReference.singleton?.move == null || PlayerReference.singleton?.damage == null || !CursorManager.GlobalState) return false;
         if (PlayerMove.noclip || PlayerReference.singleton.damage.isDead) return false;
 
         if (PlayerReference.singleton.move.isGround && isFloating) 

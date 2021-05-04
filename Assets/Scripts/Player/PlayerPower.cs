@@ -50,11 +50,10 @@ namespace Electricity
 
         private void Update()
         {
-            if (!CursorManager.GlobalState) return;
             if (Input.GetMouseButtonUp(0)) waitForUp = false;
             if (waitForUp) return;
 
-            Active = Input.GetMouseButton(0) && currentPoint != null;
+            Active = Input.GetMouseButton(0) && currentPoint != null && !PlayerReference.singleton.damage.isDead && CursorManager.GlobalState;
 
             if (!IsStillInRange())
                 Active = false;
