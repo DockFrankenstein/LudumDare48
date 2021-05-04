@@ -88,7 +88,7 @@ public class FragmentController : MonoBehaviour
     bool raycast()
     {
         Vector3 distanceVector = playerTransform.position - transform.position;
-        bool hits = Physics.Raycast(new Ray(transform.position, distanceVector.normalized), out RaycastHit hit, spotDistance, layer);
+        bool hits = Physics.SphereCast(new Ray(transform.position, distanceVector.normalized), raycastRadious, out RaycastHit hit, spotDistance, layer);
         return hits && hit.transform.CompareTag("Player");
     }
 
