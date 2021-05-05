@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 759114038}
   - component: {fileID: 759114039}
   - component: {fileID: 3567566413020109925}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Platform Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,7 +896,7 @@ GameObject:
   - component: {fileID: 7322185982056557081}
   - component: {fileID: 4986992791345651502}
   - component: {fileID: 1949712385140068734}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrushDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
