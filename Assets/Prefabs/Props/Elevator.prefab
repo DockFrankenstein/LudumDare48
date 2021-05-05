@@ -189,7 +189,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 10cb435360b73b7489f6debd0d9696f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -360,7 +360,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 10cb435360b73b7489f6debd0d9696f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -461,7 +461,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 7a24cc79c2193be4ab5fb4f43db11f25, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5db0c4d5963e9bd4f95a97aaf9e38ff5, type: 2}
+      objectReference: {fileID: 2100000, guid: 10cb435360b73b7489f6debd0d9696f0, type: 2}
     - target: {fileID: 919132149155446097, guid: 7a24cc79c2193be4ab5fb4f43db11f25, type: 3}
       propertyPath: m_Name
       value: elevator_frame
