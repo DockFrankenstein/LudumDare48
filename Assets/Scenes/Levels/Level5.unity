@@ -3837,10 +3837,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 111540763}
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
-      propertyPath: layer.m_Bits
-      value: 503
-      objectReference: {fileID: 0}
-    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: velocityMultiplayer.x
       value: 1
       objectReference: {fileID: 0}
@@ -4592,10 +4588,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
-      propertyPath: layer.m_Bits
-      value: 503
-      objectReference: {fileID: 0}
-    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: velocityMultiplayer.x
       value: 0.8
       objectReference: {fileID: 0}
@@ -5019,10 +5011,6 @@ PrefabInstance:
       propertyPath: trigger
       value: 
       objectReference: {fileID: 1588156981}
-    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
-      propertyPath: layer.m_Bits
-      value: 503
-      objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: spotDistance
       value: 25
@@ -5861,10 +5849,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1588156981}
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
-      propertyPath: layer.m_Bits
-      value: 503
-      objectReference: {fileID: 0}
-    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: spotDistance
       value: 25
       objectReference: {fileID: 0}
@@ -6083,10 +6067,6 @@ PrefabInstance:
       propertyPath: trigger
       value: 
       objectReference: {fileID: 1588156981}
-    - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
-      propertyPath: layer.m_Bits
-      value: 503
-      objectReference: {fileID: 0}
     - target: {fileID: 2281822466427786054, guid: 9f68bcfededd9a74a87a961a54e996ae, type: 3}
       propertyPath: spotDistance
       value: 25

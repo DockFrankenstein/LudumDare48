@@ -10025,7 +10025,7 @@ MonoBehaviour:
         m_CallState: 2
   layer:
     serializedVersion: 2
-    m_Bits: 1015
+    m_Bits: 193
   debugText: {fileID: 5964860022615195057}
 --- !u!54 &2281822466427786109
 Rigidbody:
