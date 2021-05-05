@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1.23
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 4dbb69ded9895344e9926c2885ecb831, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.7794798, g: 0.7765949, b: 0.7794798, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -341,9 +341,25 @@ PrefabInstance:
       propertyPath: m_Lightmapping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1213199075724139704, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 4.096829e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213199075724139704, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 0.3203125
+      objectReference: {fileID: 0}
     - target: {fileID: 5207001274086004867, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5207001274086004867, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 7e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5207001274086004867, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 6.9e-44
       objectReference: {fileID: 0}
     - target: {fileID: 7652629755400740543, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1552,7 +1568,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh79520
+  m_Name: pb_Mesh99356
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1845,9 +1861,25 @@ PrefabInstance:
       propertyPath: m_Lightmapping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1213199075724139704, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 7e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213199075724139704, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 6.7e-44
+      objectReference: {fileID: 0}
     - target: {fileID: 5207001274086004867, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5207001274086004867, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.05e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5207001274086004867, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8.4e-44
       objectReference: {fileID: 0}
     - target: {fileID: 7652629755400740543, guid: f708bab004ca70b4f8de036ae27f8a74, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2242,7 +2274,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-13028
+  m_Name: pb_Mesh-143320
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
