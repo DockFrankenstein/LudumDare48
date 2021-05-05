@@ -827,13 +827,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LogLimit: 64
   ConsoleConfig: {fileID: 11400000, guid: 67849b547219c6544b513c8321bd7756, type: 2}
-  CanvasObject: {fileID: 3339577114814308204}
   Logs: {fileID: 6241433097206589225}
   Input: {fileID: 8713881459255019119}
   Scroll: {fileID: 5475899149899506720}
-  OnConsoleChangeState:
-    m_PersistentCalls:
-      m_Calls: []
   IgnoreReselectPlatforms: 080000000b000000
 --- !u!114 &8856867052474242483
 MonoBehaviour:
@@ -847,9 +843,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5226ffb2fcf7d314b8a7075b140b5767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
   Key: 96
   ToggleObject: {fileID: 3339577114814308204}
+  OnChangeState:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5421854239198661686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +1006,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1536572568086542609}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: qASIC.Console.GameConsoleInterface, Assembly-CSharp
         m_MethodName: DiscardPreviousCommand
         m_Mode: 1
         m_Arguments:
