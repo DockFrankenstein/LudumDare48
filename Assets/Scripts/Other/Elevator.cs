@@ -38,7 +38,7 @@ public class Elevator : MonoBehaviour
 
     public void OnInElevator(Collider collider)
     {
-        if (!isEnd || isUsed) return;
+        if (!isEnd || isUsed || PlayerReference.singleton.damage.isDead) return;
         if (collider.gameObject.tag != "Player") return;
         isUsed = true;
         anim?.SetTrigger(DoorCloseTriggerName);
@@ -48,6 +48,7 @@ public class Elevator : MonoBehaviour
 
     public void LoadScene()
     {
+        if (PlayerReference.singleton.damage.isDead) return;
         if (!Application.CanStreamedLevelBeLoaded(sceneName))
         {
             qDebug.LogError("Cannot load scene in elevator!");
