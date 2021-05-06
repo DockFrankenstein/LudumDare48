@@ -73,7 +73,7 @@ public class PlayerMove : MonoBehaviour
                 break;
             default:
                 bool lastGround = isGround;
-                isGround = Physics.CheckSphere(GroundPoint.position, CheckRadious, GroundLayer) || platformDetection.isPlatform;
+                isGround = Physics.CheckSphere(GroundPoint.position, CheckRadious, GroundLayer);
 
                 if (!lastGround && isGround) PlayerReference.singleton?.damage?.HandleVelocity(velocity);
 
