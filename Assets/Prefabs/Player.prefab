@@ -383,7 +383,7 @@ MonoBehaviour:
   CheckRadious: 0.5
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 7232
+    m_Bits: 22592
   Gravity: 30
   GroundVelocity: 5
   JumpHeight: 1.4
