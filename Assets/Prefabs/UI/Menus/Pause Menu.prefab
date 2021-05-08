@@ -454,26 +454,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9213375620234944658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5226ffb2fcf7d314b8a7075b140b5767, type: 3}
+  m_Script: {fileID: 11500000, guid: f769db349d6b1bb4c8d44f6fba744575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: 27
   ToggleObject: {fileID: 9213375618913549192}
   OnChangeState:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9213375620234944661}
-        m_TargetAssemblyTypeName: MenuTimePause, Assembly-CSharp
-        m_MethodName: PauseTime
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 8688588987310324535}
         m_TargetAssemblyTypeName: CursorUI, Assembly-CSharp
         m_MethodName: ChangeState
@@ -486,6 +473,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Key: 27
 --- !u!114 &9213375620234944661
 MonoBehaviour:
   m_ObjectHideFlags: 0

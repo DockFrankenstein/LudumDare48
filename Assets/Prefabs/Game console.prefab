@@ -768,10 +768,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5985880209528304519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5226ffb2fcf7d314b8a7075b140b5767, type: 3}
+  m_Script: {fileID: 11500000, guid: 9265045c5fe50a54282108da502288b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: 96
   ToggleObject: {fileID: 5530429629227271397}
   OnChangeState:
     m_PersistentCalls:
@@ -788,6 +787,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  KeyName: Console
 --- !u!114 &1884349812
 MonoBehaviour:
   m_ObjectHideFlags: 0

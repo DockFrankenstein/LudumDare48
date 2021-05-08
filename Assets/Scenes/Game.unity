@@ -4928,7 +4928,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is the power station model. It's here, because of the faulty collision
     that gives you infinite velocity if you stand in a specific spot. We are still
-    trying to resolve it, or remove it compleatly
+    trying to resolve it, or remove it completely
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cdfce5e83b107fb4e902a1d9eb9dc452, type: 2}
   m_sharedMaterial: {fileID: 6004347845169626260, guid: cdfce5e83b107fb4e902a1d9eb9dc452, type: 2}
