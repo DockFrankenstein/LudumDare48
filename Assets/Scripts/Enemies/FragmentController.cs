@@ -151,16 +151,12 @@ public class FragmentController : MonoBehaviour
         rb.useGravity = true;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(target, 1f);
-    }
-
     [ExecuteInEditMode]
     private void OnDrawGizmosSelected()
     {
         if (!Application.isEditor) return;
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(target, 1f);
         for (int i = 0; i < path.Length; i++)
         {
             Gizmos.color = i == pathIndex ? Color.red : Color.blue;
