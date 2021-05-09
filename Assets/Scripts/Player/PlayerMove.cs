@@ -40,7 +40,11 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (debug) qASIC.Displayer.InfoDisplayer.DisplayValue("player velocity", velocity.ToString(), "debug");
+        if (debug)
+        {
+            qASIC.Displayer.InfoDisplayer.DisplayValue("player velocity", velocity.ToString(), "debug");
+            qASIC.Displayer.InfoDisplayer.DisplayValue("is ground", isGround.ToString(), "debug");
+        }
 
         if (!Active) return;
         Vector3 path = new Vector3();

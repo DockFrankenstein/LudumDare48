@@ -30,6 +30,7 @@ public class PlatformDetection : MonoBehaviour
     
     private void Update()
     {
+        qASIC.Displayer.InfoDisplayer.DisplayValue("is platform", isPlatform.ToString(), "debug");
         if (!isPlatform)
         {
             platformMove = Vector3.zero;

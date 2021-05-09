@@ -4132,6 +4132,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1251786252565202575, guid: 327113ac0d2c1ee4e80b581798776910, type: 3}
       propertyPath: ActivatedPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251786252565202575, guid: 327113ac0d2c1ee4e80b581798776910, type: 3}
+      propertyPath: DeactivatedPosition.y
       value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 1251786252565202576, guid: 327113ac0d2c1ee4e80b581798776910, type: 3}
