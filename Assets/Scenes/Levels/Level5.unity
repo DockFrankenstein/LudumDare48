@@ -3753,7 +3753,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897415503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.5, y: -10.5, z: 0}
+  m_LocalPosition: {x: -55.5, y: -10.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4777,7 +4777,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh52916
+  m_Name: pb_Mesh63634
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5218,7 +5218,7 @@ GameObject:
   - component: {fileID: 1823436969}
   - component: {fileID: 1823436968}
   - component: {fileID: 1823436967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: End shaft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
