@@ -31,6 +31,8 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Debug")]
     public bool debug;
+    public bool moveWithPlatform;
+    public bool useGravity = true;
 
     private void Awake()
     {
@@ -40,12 +42,6 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (debug)
-        {
-            qASIC.Displayer.InfoDisplayer.DisplayValue("player velocity", velocity.ToString(), "debug");
-            qASIC.Displayer.InfoDisplayer.DisplayValue("is ground", isGround.ToString(), "debug");
-        }
-
         if (!Active) return;
         Vector3 path = new Vector3();
 
@@ -57,17 +53,30 @@ public class PlayerMove : MonoBehaviour
             path = (transform.right * x + transform.forward * z).normalized * (running ? RunSpeed : Speed) * speedMultiplier;
             walking = path == Vector3.zero;
         }
+        qASIC.Displayer.InfoDisplayer.DisplayValue("platform velocity", moveWithPlatform ? (platformDetection.platformMove * Time.deltaTime).y.ToString() : "0", "debug");
+        if (moveWithPlatform) charControl.Move(platformDetection.platformMove * Time.deltaTime);
 
         CalculateGravity();
         path.y = velocity;
 
         path *= Time.deltaTime;
-        charControl.Move(platformDetection.platformMove);
         charControl.Move(path);
+
+        if (debug)
+        {
+            qASIC.Displayer.InfoDisplayer.DisplayValue("player velocity", velocity.ToString(), "debug");
+            qASIC.Displayer.InfoDisplayer.DisplayValue("is ground", isGround.ToString(), "debug");
+        }
     }
 
     private void CalculateGravity()
     {
+        if (!useGravity)
+        {
+            velocity = 0f;
+            return;
+        }
+
         switch (noclip)
         {
             case true:
@@ -82,9 +91,10 @@ public class PlayerMove : MonoBehaviour
                 if (!lastGround && isGround) PlayerReference.singleton?.damage?.HandleVelocity(velocity);
 
                 velocity -= Gravity * Time.deltaTime;
-                if (isGround && charControl.isGrounded) velocity = -GroundVelocity;
-                if (isGround && platformDetection.isPlatform) velocity = 0f;
-                if (isGround && InputManager.GetInput("Jump") && CursorManager.GlobalState) velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity);
+                if (isGround) velocity = -GroundVelocity;
+                if (platformDetection.isPlatform && isGround) velocity = 0f;
+                if (isGround && InputManager.GetInput("Jump") && CursorManager.GlobalState) 
+                    velocity = Mathf.Sqrt(JumpHeight * 2f * Gravity) + platformDetection.platformMove.y;
                 break;
         }
     }

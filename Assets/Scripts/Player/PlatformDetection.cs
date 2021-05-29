@@ -2,40 +2,39 @@ using UnityEngine;
 
 public class PlatformDetection : MonoBehaviour
 {
-    public string platformTag;
-
-    Transform platformTransform;
-
+    public LayerMask platformMask;
+    PlatformBase platform;
     public bool isPlatform;
-
     public Vector3 platformMove;
 
-    Vector3 previous;
+    public float radius;
 
-    private void OnTriggerEnter(Collider other)
+    private void CheckPlatform()
     {
-        if (other.transform.tag != platformTag) return;
-        platformTransform = other.transform;
-        isPlatform = true;
-        previous = platformTransform.position;
-    }
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, platformMask);
+        if (isPlatform && colliders.Length != 0) return;
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.tag != platformTag) return;
-        platformTransform = null;
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            PlatformBase colliderBase = colliders[i].GetComponent<PlatformBase>();
+            if (colliderBase == null) continue;
+            platform = colliderBase;
+            isPlatform = true;
+            return;
+        }
         isPlatform = false;
-        previous = Vector3.zero;
     }
-    
+
     private void Update()
     {
+        CheckPlatform();
+
         if (!isPlatform)
         {
             platformMove = Vector3.zero;
             return;
         }
-        platformMove = platformTransform.position - previous;
-        previous = platformTransform.position;
+        Debug.Log(platform.direction);
+        platformMove = platform.direction;
     }
 }

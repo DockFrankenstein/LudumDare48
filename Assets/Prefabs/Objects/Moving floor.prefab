@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loop: 0
-  MoovingPart: {fileID: 1255214129036680556}
+  Base: {fileID: 3147698841031200867}
   DeactivatedPosition: {x: 0, y: 0, z: 0}
   ActivatedPosition: {x: 0, y: 2, z: 0}
   speed: 10
+  currentDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &1255214129036680559
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +63,8 @@ GameObject:
   - component: {fileID: 1255214129036677779}
   - component: {fileID: 1255214129036677778}
   - component: {fileID: 1255214129036680557}
-  m_Layer: 6
+  - component: {fileID: 3147698841031200867}
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -335,3 +337,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &3147698841031200867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255214129036680559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e04ed808513fda4bb3f8231a9d1a9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0, z: 0}
