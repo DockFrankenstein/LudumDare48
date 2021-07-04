@@ -1,14 +1,13 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using qASIC.Console;
 using System;
 
 namespace qASIC.FileManagement
 {
     public static class FileManager
     {
-        public static string GetCustomFolderPath(Environment.SpecialFolder type) { return System.Environment.GetFolderPath(type); }
+        public static string GetCustomFolderPath(Environment.SpecialFolder type) { return Environment.GetFolderPath(type); }
 
         #region Trim
         /// <summary>Trims paths end by specified amount of folders</summary>
@@ -77,7 +76,7 @@ namespace qASIC.FileManagement
             }
             catch (Exception e)
             {
-                GameConsoleController.Log($"Couldn't save file. Exception: {e}", "error");
+                qDebug.LogError($"Couldn't save file. Exception: {e}");
             }
         }
 
@@ -104,7 +103,7 @@ namespace qASIC.FileManagement
             }
             catch (Exception e)
             {
-                GameConsoleController.Log($"Couldn't load file. Exception: {e}", "error");
+                qDebug.LogError($"Couldn't load file. Exception: {e}");
             }
             return data;
         }
@@ -146,7 +145,7 @@ namespace qASIC.FileManagement
             }
             catch (Exception e)
             {
-                GameConsoleController.Log($"Couldn't save file: {e}", "error");
+                qDebug.LogError($"Couldn't save file: {e}");
             }
         }
 
@@ -173,7 +172,7 @@ namespace qASIC.FileManagement
             }
             catch (Exception e)
             {
-                GameConsoleController.Log($"Couldn't load file: {e}", "error");
+                qDebug.LogError($"Couldn't load file: {e}");
             }
         }
 
@@ -240,7 +239,7 @@ namespace qASIC.FileManagement
             }
             catch (Exception e)
             {
-                GameConsoleController.Log($"Couldn't save file. Exception: {e}", "error");
+                qDebug.LogError($"Couldn't save file. Exception: {e}");
             }
         }
 
@@ -267,7 +266,7 @@ namespace qASIC.FileManagement
             }
             catch (Exception e)
             {
-                GameConsoleController.Log($"Couldn't save file. Exception: {e}", "error");
+                qDebug.LogError($"Couldn't save file. Exception: {e}");
             }
             return data;
         }

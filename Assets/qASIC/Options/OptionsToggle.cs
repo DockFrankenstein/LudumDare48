@@ -1,15 +1,17 @@
-﻿using UnityEngine.UI;
-
-namespace qASIC.Options.Menu
+﻿namespace qASIC.Options.Menu
 {
     public class OptionsToggle : MenuOption
     {
-        private Toggle _toggle;
+        private UnityEngine.UI.Toggle _toggle;
 
         public bool InvertEvent;
         public UnityEventBool OnValueChange = new UnityEventBool();
 
-        private void Awake() => _toggle = GetComponent<Toggle>();
+        private void Awake()
+        {
+            _toggle = GetComponent<UnityEngine.UI.Toggle>();
+            if (_toggle != null) _toggle.onValueChanged.AddListener(SetValue);
+        }
 
         public void SetValue(bool state) 
         { 

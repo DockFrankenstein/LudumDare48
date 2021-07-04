@@ -23,8 +23,8 @@ namespace Menu.Options
             properties = resolutionList;
         }
 
-        public override void SetValue(object propertie) =>
-            newValue = VectorStringConvertion.Vector2IntToString((Vector2Int)propertie);
+        public override void SetValue(object property) =>
+            newValue = VectorText.ToText((Vector2Int)property);
 
         public override void SetCurrentIndex()
         {
@@ -37,13 +37,13 @@ namespace Menu.Options
         {
             if (!(property is Vector2Int)) return string.Empty;
             Vector2Int res = (Vector2Int)property;
-            return VectorStringConvertion.Vector2IntToString(res);
+            return VectorText.ToText(res);
         }
 
         public override void LoadOption()
         {
             if (!OptionsController.TryGetUserSetting(OptionName, out string optionValue) ||
-                !VectorStringConvertion.TryStringToVector2Int(optionValue, out Vector2Int result)) return;
+                !VectorText.TryToVector2Int(optionValue, out Vector2Int result)) return;
             int index = properties.IndexOf(result);
             if (index < 0) return;
             SetIndexSilent(index);

@@ -1,8 +1,8 @@
 ﻿using qASIC.Console.Commands;
-using System.Linq;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
+using qASIC.Tools;
 
 namespace qASIC.Console
 {
@@ -13,7 +13,8 @@ namespace qASIC.Console
             command = null;
             for (int i = 0; i < Commands.Count; i++)
             {
-                if (!AliasExists(Commands[i], commandName)) continue;
+                if (!AliasExists(Commands[i], commandName) || !Commands[i].Active) continue;
+
                 command = Commands[i];
                 return true;
             }

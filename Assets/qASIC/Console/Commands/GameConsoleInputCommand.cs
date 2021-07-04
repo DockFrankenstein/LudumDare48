@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using qASIC.Backend;
+using qASIC.Tools;
 using qASIC.InputManagement;
 
 namespace qASIC.Console.Commands
 {
     public class GameConsoleInputCommand : GameConsoleCommand
     {
+        public override bool Active { get => GameConsoleController.GetConfig().InputCommand; }
         public override string CommandName { get; } = "input";
         public override string Description { get; } = "change, print input";
         public override string Help { get; } = "Use input change <input name>; input print";
@@ -18,11 +19,10 @@ namespace qASIC.Console.Commands
             {
                 case "change":
                     if (CheckForArgumentCount(args, 2))
-                        qASICObjectsCreation.CreateInputWindow(args[2]);
+                        qASICObjectCreator.CreateInputWindow(args[2]);
                     break;
                 case "print":
-                    if (CheckForArgumentCount(args, 1) && GameConsoleController.TryGettingConfig(out Tools.GameConsoleConfig config) && config.ShowInputMessages)
-                        Print();
+                    Print();
                     break;
                 default:
                     NoOptionException(args[1]);

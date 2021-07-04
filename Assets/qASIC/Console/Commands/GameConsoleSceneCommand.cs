@@ -6,6 +6,7 @@ namespace qASIC.Console.Commands
 {
     public class GameConsoleSceneCommand : GameConsoleCommand
     {
+        public override bool Active { get => GameConsoleController.GetConfig().SceneCommand; }
         public override string CommandName { get; } = "scene";
         public override string Description { get; } = "get, load scene";
         public override string Help { get; } = "Use scene; scene get; scene load <scene name>";
@@ -29,6 +30,11 @@ namespace qASIC.Console.Commands
                             LoadScene(SceneManager.GetActiveScene().name);
                             break;
                         default:
+                            if (!Application.CanStreamedLevelBeLoaded(args[1]))
+                            {
+                                LogError($"Scene <b>{args[1]}</b> does not exist!");
+                                return;
+                            }
                             LoadScene(args[1]);
                             break;
                     }
@@ -37,7 +43,7 @@ namespace qASIC.Console.Commands
                     if (args[1] == "load") LoadScene(args[2]);
                     break;
                 default:
-                    Log("There was an error while executing command <b>Scene</b>", "error");
+                    LogError("There was an error while executing command <b>Scene</b>");
                     break;
             }
         }
@@ -46,7 +52,7 @@ namespace qASIC.Console.Commands
         {
             if (!Application.CanStreamedLevelBeLoaded(sceneName))
             {
-                Log("Scene does not exist!", "error");
+                LogError("Scene does not exist!");
                 return;
             }
             SceneManager.LoadScene(sceneName);

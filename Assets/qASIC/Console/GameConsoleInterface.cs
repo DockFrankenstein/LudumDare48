@@ -3,10 +3,10 @@ using TMPro;
 using qASIC.Console.Tools;
 using System.Collections;
 using UnityEngine.Events;
+using qASIC.Toggling;
 
 namespace qASIC.Console
 {
-    [RequireComponent(typeof(Toggler))]
     public class GameConsoleInterface : MonoBehaviour
     {
         [Header("Settings")]
@@ -47,7 +47,7 @@ namespace qASIC.Console
             if (toggler != null) toggler.OnChangeState.AddListener(OnChangeState);
         }
 
-        public void OnChangeState(bool state)
+        void OnChangeState(bool state)
         {
             if (!state) return;
             ResetScroll();
@@ -67,22 +67,30 @@ namespace qASIC.Console
 
         private void HandleUnityLog(string logText, string trace, LogType type)
         {
+            if (!GameConsoleController.TryGettingConfig(out GameConsoleConfig config)) return;
+
             string color = "default";
             switch (type)
             {
                 case LogType.Exception:
+                    if (!ConsoleConfig.LogUnityExceptionsToConsole) return;
+                    color = "unity exception";
+                    break;
                 case LogType.Error:
-                case LogType.Assert:
                     if (!ConsoleConfig.LogUnityErrorsToConsole) return;
-                    color = "error";
+                    color = "unity error";
+                    break;
+                case LogType.Assert:
+                    if (!ConsoleConfig.LogUnityAssertsToConsole) return;
+                    color = "unity assert";
                     break;
                 case LogType.Warning:
                     if (!ConsoleConfig.LogUnityWarningsToConsole) return;
-                    color = "warning";
+                    color = "unity warning";
                     break;
                 case LogType.Log:
                     if (!ConsoleConfig.LogUnityMessagesToConsole) return;
-                    color = "default";
+                    color = "unity message";
                     break;
             }
 
@@ -126,15 +134,8 @@ namespace qASIC.Console
         private void ReInsertCommand(bool reverse)
         {
             if (GameConsoleController.InvokedCommands.Count == 0) return;
-            switch (reverse)
-            {
-                case false:
-                    _commandIndex++;
-                    break;
-                case true:
-                    _commandIndex--;
-                    break;
-            }
+            _commandIndex += reverse ? -1 : 1;
+
             _commandIndex = Mathf.Clamp(_commandIndex, 0, GameConsoleController.InvokedCommands.Count - 1);
             if (Input != null)
                 Input.SetTextWithoutNotify(GameConsoleController.InvokedCommands[GameConsoleController.InvokedCommands.Count - _commandIndex - 1]);
@@ -179,7 +180,7 @@ namespace qASIC.Console
         {
             if (Scroll == null) return;
             Canvas.ForceUpdateCanvases();
-            Scroll.normalizedPosition = new Vector2(Scroll.normalizedPosition.x, 0f); ;
+            Scroll.normalizedPosition = new Vector2(Scroll.normalizedPosition.x, 0f);
         }
     }
 }

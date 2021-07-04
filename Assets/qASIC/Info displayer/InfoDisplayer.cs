@@ -13,14 +13,33 @@ namespace qASIC.Displayer
         public bool ExceptUnknown = true;
 
         [Space]
-        public string[] DefaultLines;
+        [Tooltip("If the text of a line is empty, the separator will be removed from it")]
+        public bool RemoveSeparatorText = true;
+        [Tooltip("If the value of a line is empty, the separator will be removed from it")]
+        public bool RemoveSeparatorValue = false;
+
+        [Space]
+        public DisplayerLine[] DefaultLines = new DisplayerLine[]
+                {
+                    new DisplayerLine("fps", "Framerate"),
+                    new DisplayerLine("resolution", "Resolution"),
+                    new DisplayerLine("fullscreen", "Fullscreen mode"),
+                    new DisplayerLine("gpu", "Graphics card"),
+                    new DisplayerLine("cpu", "Processor"),
+                    new DisplayerLine("cpu threads", "Processor threads"),
+                    new DisplayerLine("memory", "Memory"),
+                    new DisplayerLine("os", "Operating system"),
+                    new DisplayerLine("version", "Version"),
+                    new DisplayerLine("unity version", "Unity version"),
+                    new DisplayerLine("qasic version", "qASIC version"),
+                };
 
         [Space]
         public string StartText;
         public string EndText;
         public TextMeshProUGUI Text;
 
-        private Dictionary<string, InfoDisplayerLine> lines = new Dictionary<string, InfoDisplayerLine>();
+        private Dictionary<string, DisplayerLine> lines = new Dictionary<string, DisplayerLine>();
         private static Dictionary<string, InfoDisplayer> displayers = new Dictionary<string, InfoDisplayer>();
 
         private void Awake()
@@ -43,8 +62,8 @@ namespace qASIC.Displayer
         {
             lines.Clear();
             for (int i = 0; i < DefaultLines.Length; i++)
-                if (!lines.ContainsKey(DefaultLines[i]))
-                    lines.Add(DefaultLines[i], new InfoDisplayerLine());
+                if (!lines.ContainsKey(DefaultLines[i].tag))
+                    lines.Add(DefaultLines[i].tag, DefaultLines[i]);
         }
 
         private void LateUpdate()
@@ -52,7 +71,12 @@ namespace qASIC.Displayer
             if (Text == null) return;
             Text.text = StartText;
             foreach (var value in lines)
-                if(!value.Value.Hide) Text.text += $"{value.Key}{Separator}{value.Value.Value}\n";
+            {
+                if (!value.Value.show) continue;
+                string separator = Separator;
+                if ((RemoveSeparatorText && string.IsNullOrWhiteSpace(value.Value.text)) || (RemoveSeparatorValue && string.IsNullOrWhiteSpace(value.Value.value))) separator = string.Empty;
+                Text.text += $"{value.Value.text}{separator}{value.Value.value}\n";
+            }
             Text.text += EndText;
         }
 
@@ -65,38 +89,38 @@ namespace qASIC.Displayer
             return true;
         }
 
-        private static bool LineExists(string lineName, InfoDisplayer displayer)
+        private static bool LineExists(string tag, InfoDisplayer displayer)
         {
-            if (!displayer.lines.ContainsKey(lineName))
+            if (!displayer.lines.ContainsKey(tag))
             {
                 if (!displayer.ExceptUnknown) return false;
-                displayer.lines.Add(lineName, new InfoDisplayerLine());
+                displayer.lines.Add(tag, new DisplayerLine());
             }
             return true;
         }
         #endregion
 
         #region Change
-        public static void DisplayValue(string lineName, string value, bool hidden, string displayerName = "main")
+        public static void DisplayValue(string tag, string value, bool show, string displayerName = "main")
         {
             if (!GetDisplayer(displayerName, out InfoDisplayer display)) return;
-            if (!LineExists(lineName, display)) return;
-            display.lines[lineName].Value = value;
-            display.lines[lineName].Hide = hidden;
+            if (!LineExists(tag, display)) return;
+            display.lines[tag].value = value;
+            display.lines[tag].show = show;
         }
 
-        public static void DisplayValue(string lineName, string value, string displayerName = "main")
+        public static void DisplayValue(string tag, string value, string displayerName = "main")
         {
             if (!GetDisplayer(displayerName, out InfoDisplayer display)) return;
-            if (!LineExists(lineName, display)) return;
-            display.lines[lineName].Value = value;
+            if (!LineExists(tag, display)) return;
+            display.lines[tag].value = value;
         }
 
-        public static void HideLine(string lineName, bool hide, string displayerName = "main")
+        public static void ToggleValue(string tag, bool show, string displayerName = "main")
         {
             if (!GetDisplayer(displayerName, out InfoDisplayer display)) return;
-            if (!LineExists(lineName, display)) return;
-            display.lines[lineName].Hide = hide;
+            if (!LineExists(tag, display)) return;
+            display.lines[tag].show = show;
         }
         #endregion
     }
